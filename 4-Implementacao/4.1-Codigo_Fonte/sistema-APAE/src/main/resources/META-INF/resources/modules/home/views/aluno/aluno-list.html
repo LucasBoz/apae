@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<md-button ui-sref="aluno.new">
+    NOVO ALUNO
+</md-button>
+
+<md-button ng-click="listAlunos()">
+    LOAD ALUNOS
+</md-button>
+
+
+
+<h1>LISTAGEM DE ALUNOS</h1>
+<div ng-repeat="aluno in alunos">
+    <p ui-sref="aluno.detail({id: 1})" ng-click="changeToDetail(aluno.id)">{{aluno.name}} </p>
+</div>
+
+</html>

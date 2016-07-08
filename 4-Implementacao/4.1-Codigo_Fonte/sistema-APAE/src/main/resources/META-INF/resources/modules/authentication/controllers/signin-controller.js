@@ -16,7 +16,10 @@ angular.module('authentication')
       * 
       */
      $scope.model = {
-		 entity: null,
+		 entity: {
+			 email : "admin@admin.com",
+		 	password : "admin"
+		 }
 	 };
 
     /*-------------------------------------------------------------------
