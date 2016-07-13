@@ -12,6 +12,8 @@
 
             $importService("cidService");
 
+            $scope.ativo = true;
+
             $scope.model = {
                 query : {
                     filter  : {name : null,
@@ -36,22 +38,6 @@
                 }
             ];
 
-
-            $scope.listCidInativos = function () {
-                cidService.listCidsByFilters ( null, null, {
-                    callback: function ( result ) {
-
-                        $scope.model.pageRequest.content = result.content;
-
-                        if( !$scope.model.pageRequest.content.length){
-                            $rootScope.toast("Nenhum CID encontrado");
-                        }
-
-                    }, errorHandler: function ( message, exception ) {
-                        $rootScope.toast(message);
-                    }
-                })
-            };
 
             $scope.listCid = function () {
                 cidService.listCidsByFilters ( null, null, {

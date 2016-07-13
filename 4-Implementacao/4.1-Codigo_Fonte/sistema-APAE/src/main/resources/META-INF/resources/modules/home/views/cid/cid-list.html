@@ -11,11 +11,11 @@
             <span>CID</span>
         </div>
 
-        <md-button ng-if="filtro" class="md-accent md-raised md-hue-1" style="margin-right: 100px" ng-click="listCidInativos(); filtro = false">
-            NOVO
+        <md-button ng-if="ativo" class="md-accent md-raised md-hue-1" style="margin-right: 100px" ng-click=" ativo = false; listCid();">
+            ATIVAR CID
         </md-button>
 
-        <md-button ng-if="!filtro" class="md-accent md-raised md-hue-1" style="margin-right: 100px" ng-click="listCidInativos(); filtro = true">
+        <md-button ng-if="!ativo" class="md-accent md-raised md-hue-1" style="margin-right: 100px" ng-click="ativo = true; listCid(); ">
             Voltar
         </md-button>
 
@@ -33,6 +33,7 @@
             <th md-column ><span>CID10</span></th>
             <th md-column ><span>Descrição</span></th>
             <th md-column ><span>Definição</span></th>
+            <th md-column ><span>Status</span></th>
         </tr>
         </thead>
         <tbody md-body>
@@ -40,6 +41,8 @@
             <td md-cell >{{cid.cid10}}</td>
             <td md-cell>{{cid.descr}}</td>
             <td md-cell>{{cid.definicao}}</td>
+            <td md-cell ng-if="cid.ativo">ATIVO</td>
+            <td md-cell ng-if="!cid.ativo">INATIVO</td>
         </tr>
         </tbody>
     </table>

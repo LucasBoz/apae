@@ -76,6 +76,6 @@ public class CidService
 	@Transactional(readOnly=true)
 	public Page<Cid> listCidsByFilters( String filter, PageRequest pageable )
 	{
-		return this.cidRepository.listByFilters( filter, pageable );
+		return this.cidRepository.listByFilters( filter , pageable );
 	}
 }

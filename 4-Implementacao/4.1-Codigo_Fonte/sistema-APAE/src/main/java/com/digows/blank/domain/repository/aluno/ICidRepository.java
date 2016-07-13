@@ -26,7 +26,8 @@ public interface ICidRepository extends JpaRepository<Cid, Long>
 	 */
 	@Query(value=
 				   "FROM Cid cid " +
-				  "WHERE ( FILTER(cid.id, :filter) = TRUE )")
+				  "WHERE ( FILTER(cid.id, :filter) = TRUE)")
 	public Page<Cid> listByFilters( @Param("filter") String filter, Pageable pageable );
+
 
 }
