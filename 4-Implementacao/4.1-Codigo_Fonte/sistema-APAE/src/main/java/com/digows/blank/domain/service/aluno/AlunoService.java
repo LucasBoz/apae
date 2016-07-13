@@ -65,7 +65,7 @@ public class AlunoService
 	{
 		Assert.notNull( aluno );
 
-//		aluno.setEnabled( true );
+		aluno.isValid();
 
 		return this.alunoRepository.save( aluno );
 	}
@@ -75,7 +75,7 @@ public class AlunoService
 	{
 		Assert.notNull( aluno );
 
-//		aluno.setEnabled( true );
+		aluno.isValid();
 
 		return this.alunoRepository.save( aluno );
 	}
@@ -92,4 +92,13 @@ public class AlunoService
 	{
 		return this.alunoRepository.listByFilters( filter, pageable );
 	}
+	
+	
+	
+	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+	public void removeAluno(  Long alunoId)
+	{
+		this.alunoRepository.delete( alunoId );
+	}
+	
 }

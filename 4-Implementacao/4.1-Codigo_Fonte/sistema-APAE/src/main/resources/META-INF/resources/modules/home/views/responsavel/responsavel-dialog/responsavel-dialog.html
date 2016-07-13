@@ -18,17 +18,16 @@
                     <div>
 
                         <md-input-container width="300" class="md-block" >
-                            <label>Nome</label>
+                            <label>Nome*</label>
                             <input required="true" name="nome" type="text" ng-model="responsavel.nome">
                             <div ng-messages="responsavelForm.email.$error" md-auto-hide="false">
                                 <div ng-message="required"> Campo obrigatório </div>
-                                <div ng-message="email"> Insira um email válido </div>
                             </div>
                         </md-input-container>
 
 
                         <md-input-container width="300" class="md-block" >
-                            <label>Telefone</label>
+                            <label>Telefone*</label>
                             <input name="Telefone" type="text" ng-model="responsavel.telefone">
                         </md-input-container>
 

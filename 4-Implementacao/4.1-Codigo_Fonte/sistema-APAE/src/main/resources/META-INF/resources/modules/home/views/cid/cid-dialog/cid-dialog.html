@@ -1,0 +1,88 @@
+<md-dialog aria-label=responsavel" ng-cloak style="min-width: 450px ">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>CID10</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form name="responsavelForm" id="responsavelForm">
+
+                    <div>
+                        <div layout="row" class="cidInfo">
+
+                            <span>CID 10: </span>
+                            <span>{{cid.cid10}}</span>
+
+                            <md-switch style="margin: 0" ng-model="cid.ativo" aria-label="Ativo">
+                                <span ng-if="cid.ativo">
+                                    ATIVADO
+                                </span>
+                                 <span ng-if="!cid.ativo">
+                                    DESATIVADO
+                                </span>
+                            </md-switch>
+
+                        </div>
+
+                        <md-input-container width="400" class="md-block">
+                            <label>Definição</label>
+                            <input name="definicao" type="text" ng-model="cid.definicao">
+                        </md-input-container>
+
+
+                        <div class="cidInfo">
+
+                            <div ng-if="cid.descr">
+                                <span>Descrição</span>
+                                <span>{{cid.descr}}</span>
+                            </div>
+
+                        </div>
+
+
+                        <div layout="row" class="cidInfo">
+
+                            <div ng-if="cid.cat">
+                                <span>cat:</span>
+                                <span>{{cid.cat}}</span>
+                            </div>
+                            <div ng-if="cid.subcat">
+                                <span>subCat:</span>
+                                <span>{{cid.subcat}}</span>
+                            </div>
+                            <div ng-if="cid.restsexo">
+                                <span>restrsexo</span>
+                                <span>{{cid.restsexo}}</span>
+                            </div>
+                            <div ng-if="cid.opc != ' '">
+                                <span>OPC:</span>
+                                <span>{{cid.opc}}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                cancelar
+            </md-button>
+            <md-button ng-click="answer(cid)">
+                Salvar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

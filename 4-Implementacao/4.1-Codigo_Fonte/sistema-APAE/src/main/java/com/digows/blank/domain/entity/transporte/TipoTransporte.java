@@ -9,5 +9,5 @@ package com.digows.blank.domain.entity.transporte;
  */
 public enum TipoTransporte
 {
-
+	APAE, PRIVADO
 }

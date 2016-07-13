@@ -1,5 +1,7 @@
 package com.digows.blank.domain.service.aluno;
 
+import java.util.Calendar;
+
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -51,29 +53,17 @@ public class CidService
 	}
 	
 	
-	/**
-	 * 
-	 * @param cid
-	 * @return
-	 */
 	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
-	public Cid insertCid( Cid cid)
+	public void updateCid( Cid cid)
 	{
-		Assert.notNull( cid );
-
-//		cid.setEnabled( true );
-
-		return this.cidRepository.save( cid );
-	}
 	
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
-	public Cid updateCid( Cid cid)
-	{
-		Assert.notNull( cid );
+		Cid cid10 = findCidById(cid.getId());
+		
+		cid10.setAtivo( cid.getAtivo() );
+		cid10.setDefinicao( cid.getDefinicao() );
 
-//		cid.setEnabled( true );
-
-		return this.cidRepository.save( cid );
+		this.cidRepository.save( cid10 );
+		
 	}
 	
 	

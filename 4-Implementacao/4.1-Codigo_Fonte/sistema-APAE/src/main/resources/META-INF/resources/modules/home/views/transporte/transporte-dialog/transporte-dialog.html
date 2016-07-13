@@ -1,0 +1,47 @@
+<md-dialog aria-label=transporte" ng-cloak style="min-width: 450px ">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Transporte</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form name="transporteForm" id="transporteForm">
+
+                    <div>
+
+                        <md-input-container width="400" class="md-block">
+                            <label>Nome*</label>
+                            <input name="nome" type="text" ng-model="transporte.nome">
+                        </md-input-container>
+
+                        <md-input-container width="400" class="md-block">
+                            <label>Telefone*</label>
+                            <input name="telefone" type="text" ng-model="transporte.telefone">
+                        </md-input-container>
+
+
+                    </div>
+                </form>
+
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                cancelar
+            </md-button>
+            <md-button ng-click="answer(transporte)">
+                Salvar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -17,6 +17,14 @@ import br.com.eits.common.domain.entity.AbstractEntity;
  *
  */
 
+/**
+ * @author lucas
+ *
+ */
+/**
+ * @author lucas
+ *
+ */
 @Entity
 @Audited
 @Table(name = "\"cid10\"")
@@ -28,104 +36,56 @@ public class Cid  extends AbstractEntity
 	 */
 	private static final long serialVersionUID = 7067237191070868263L;
 	
-	@Column(length = 4)
+	@Column(length = 123)
 	private String cid10;
-	@Column(length = 1)
-	private Character opc;
-	@Column(length = 1)
-	private Character cat;
-	@Column(length = 1)
-	private Character subCat;
+	
+	@Column(length = 123)
+	private String opc;
+	
+	@Column(length = 100)
+	private String cat;
+	
+	@Column(length = 123)
+	private String subcat;
+	
 	@Column(length = 50)
-	private Character descr;
-	@Column(length = 1)
-	private Character restrsexo;
-	@Column(length = 1)
+	private String descr;
+	
+	@Column(length = 100)
+	private String definicao;
+	
+	@Column(length = 123)
+	private String restrsexo;
+	
+	@Column(length = 123)
 	private Boolean ativo;
+
+	
+	
 	/**
-	 * @return the cid10
+	 * 
 	 */
-	public String getCid10()
-	{
-		return cid10;
-	}
+//	public Cid()
+//	{
+//		super();
+//	}
+
 	/**
-	 * @param cid10 the cid10 to set
+	 * @return the definicao
 	 */
-	public void setCid10( String cid10 )
+	public String getDefinicao()
 	{
-		this.cid10 = cid10;
+		return definicao;
 	}
+
 	/**
-	 * @return the opc
+	 * @param definicao the definicao to set
 	 */
-	public Character getOpc()
+	public void setDefinicao( String definicao )
 	{
-		return opc;
+		this.definicao = definicao;
 	}
-	/**
-	 * @param opc the opc to set
-	 */
-	public void setOpc( Character opc )
-	{
-		this.opc = opc;
-	}
-	/**
-	 * @return the cat
-	 */
-	public Character getCat()
-	{
-		return cat;
-	}
-	/**
-	 * @param cat the cat to set
-	 */
-	public void setCat( Character cat )
-	{
-		this.cat = cat;
-	}
-	/**
-	 * @return the subCat
-	 */
-	public Character getSubCat()
-	{
-		return subCat;
-	}
-	/**
-	 * @param subCat the subCat to set
-	 */
-	public void setSubCat( Character subCat )
-	{
-		this.subCat = subCat;
-	}
-	/**
-	 * @return the descr
-	 */
-	public Character getDescr()
-	{
-		return descr;
-	}
-	/**
-	 * @param descr the descr to set
-	 */
-	public void setDescr( Character descr )
-	{
-		this.descr = descr;
-	}
-	/**
-	 * @return the restrsexo
-	 */
-	public Character getRestrsexo()
-	{
-		return restrsexo;
-	}
-	/**
-	 * @param restrsexo the restrsexo to set
-	 */
-	public void setRestrsexo( Character restrsexo )
-	{
-		this.restrsexo = restrsexo;
-	}
+
 	/**
 	 * @return the ativo
 	 */
@@ -133,6 +93,7 @@ public class Cid  extends AbstractEntity
 	{
 		return ativo;
 	}
+
 	/**
 	 * @param ativo the ativo to set
 	 */
@@ -140,8 +101,107 @@ public class Cid  extends AbstractEntity
 	{
 		this.ativo = ativo;
 	}
-	
-	
+
+	/**
+	 * @return the cid10
+	 */
+	public String getCid10()
+	{
+		return cid10;
+	}
+
+	/**
+	 * @param cid10 the cid10 to set
+	 */
+	public void setCid10( String cid10 )
+	{
+		this.cid10 = cid10;
+	}
+
+	/**
+	 * @return the opc
+	 */
+	public String getOpc()
+	{
+		return opc;
+	}
+
+	/**
+	 * @param opc the opc to set
+	 */
+	public void setOpc( String opc )
+	{
+		this.opc = opc;
+	}
+
+	/**
+	 * @return the cat
+	 */
+	public String getCat()
+	{
+		return cat;
+	}
+
+	/**
+	 * @param cat the cat to set
+	 */
+	public void setCat( String cat )
+	{
+		this.cat = cat;
+	}
+
+	/**
+	 * @return the subcat
+	 */
+	public String getSubcat()
+	{
+		return subcat;
+	}
+
+	/**
+	 * @param subcat the subcat to set
+	 */
+	public void setSubcat( String subcat )
+	{
+		this.subcat = subcat;
+	}
+
+	/**
+	 * @return the descr
+	 */
+	public String getDescr()
+	{
+		return descr;
+	}
+
+	/**
+	 * @param descr the descr to set
+	 */
+	public void setDescr( String descr )
+	{
+		this.descr = descr;
+	}
+
+	/**
+	 * @return the restrsexo
+	 */
+	public String getRestrsexo()
+	{
+		return restrsexo;
+	}
+
+	/**
+	 * @param restrsexo the restrsexo to set
+	 */
+	public void setRestrsexo( String restrsexo )
+	{
+		this.restrsexo = restrsexo;
+	}
+
+	/**
+	 * @return the cid10
+	 */
+
 	
 	
 }

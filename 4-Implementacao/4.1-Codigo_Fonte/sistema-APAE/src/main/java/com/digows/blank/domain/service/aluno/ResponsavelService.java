@@ -59,6 +59,8 @@ public class ResponsavelService
 	public Responsavel insertResponsavel( Responsavel responsavel)
 	{
 		Assert.notNull( responsavel );
+		
+		responsavel.isValid();
 
 		return this.responsavelRepository.save( responsavel );
 	}
@@ -67,6 +69,8 @@ public class ResponsavelService
 	public Responsavel updateResponsavel(  Responsavel responsavel)
 	{
 		Assert.notNull( responsavel );
+		
+		responsavel.isValid();
 
 		return this.responsavelRepository.save( responsavel );
 	}
@@ -84,4 +88,12 @@ public class ResponsavelService
 		return this.responsavelRepository.listByFilters( filter, pageable );
 		
 	}
+	
+	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+	public void removeResponsavel(  Long responsavelId)
+	{
+		this.responsavelRepository.delete( responsavelId );
+	}
+	
+	
 }

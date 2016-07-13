@@ -8,7 +8,7 @@
     <div layout="row" >
 
         <div class="md-toolbar-tools">
-            <span>Responsáveis</span>
+            <span>Transportes</span>
         </div>
 
         <md-button class="md-accent md-raised md-hue-1" style="margin-right: 100px" ng-click="changeToEdit($event)">
@@ -20,29 +20,23 @@
 </md-toolbar>
 
 
-
-
-
-
-<md-table-container style="border: 1px #DDDDDD solid">
+<md-table-container class="table" style="border: 1px #DDDDDD solid">
     <table md-table style="width: 100%">
         <thead md-head >
 
 
         <tr md-row class="header-list">
-            <th md-column style="width: 30%" ><span>Nome</span></th>
-            <th md-column style="width: 20%"><span>Telefone</span></th>
-            <th md-column style="width: 30%">Local de trabalho</th>
-            <th md-column style="width: 20%">Ações</th>
+            <th md-column ><span>Nome</span></th>
+            <th md-column ><span>Telefone</span></th>
+            <th md-column ><span></span></th>
         </tr>
         </thead>
         <tbody md-body>
-        <tr md-row  md-auto-select ng-click="changeToEdit($event, responsavel)" ng-repeat="responsavel in model.pageRequest.content">
-            <td md-cell >{{responsavel.nome}}</td>
-            <td md-cell>{{responsavel.telefone}}</td>
-            <td md-cell>{{responsavel.localTrabalho}}</td>
+        <tr md-row  md-auto-select ng-click="changeToEdit($event, transporte)" ng-repeat="transporte in model.pageRequest.content">
+            <td md-cell >{{transporte.nome}}</td>
+            <td md-cell>{{transporte.telefone}}</td>
             <td md-cell>
-                <md-button ng-click="removeResponsavel($event, responsavel); $event.stopPropagation()" aria-label="remove" class="md-raised table-button">
+                <md-button ng-click="removeTransporte($event, transporte); $event.stopPropagation()" aria-label="remove" class="md-raised table-button">
                     <md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
                 </md-button>
             </td>

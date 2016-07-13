@@ -6,9 +6,9 @@
 
     /**
      *
-     */''
+     */
     angular.module('home')
-        .controller('AlunoController', function( $rootScope, $scope, $state, $importService, $mdToast, $mdDialog, $mdSidenav ) {
+        .controller('AlunoController', function( $rootScope, $scope, $state, $importService, $mdDialog, $mdSidenav ) {
 
             $importService("alunoService");
         
@@ -16,12 +16,6 @@
              *                          ATTRIBUTES
              *-------------------------------------------------------------------*/
 
-            $scope.NOVO_HOSPEDE_STATE        = "hospede.novo";
-            $scope.EDITAR_HOSPEDE_STATE      = "hospede.editar";
-            $scope.DETALHE_HOSPEDE_STATE   	 = "hospede.detalhe";
-            $scope.LISTA_HOSPEDE_STATE     	 = "hospede.lista";
-
-            $scope.teste = "fndsçojifposá";
 
             $scope.alunos = [];
 
@@ -32,9 +26,6 @@
              */
             $scope.model = {
 
-                hospede : {
-
-                },
 
                 query : {
                     filter  : {name : null,
@@ -54,82 +45,66 @@
                 }
             };
 
-            /**
-             *
-             */
-            $scope.$watch( "[model.pageRequest.pageable.size, model.pageRequest.pageable.page]" , function( value, oldValue ){
-                if( $scope.model.pageRequest.content ) {
-                    $scope.listUsersByFilters ( $scope.model.query.filter.name, $scope.model.query.filter.status);
-                }
-            }, true);
 
             /*-------------------------------------------------------------------
              *                            HANDLERS
              *-------------------------------------------------------------------*/
 
-            /**
-             *
-             * @param event,
-             * @param toState,
-             * @param toParams,
-             * @param fromState,
-             * @param fromParams
-             */
-            $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-
-                $scope.model.hospede = {
-
-                };
-
-                switch( toState.name ){
-                    case $scope.LISTA_HOSPEDE_STATE :
-                        $scope.listHospedesByFilters( null, null );
-                        break;
-                    case $scope.EDITAR_HOSPEDE_STATE :
-                        $scope.findHospedeById( toParams.id );
-                        break;
-                    case $scope.DETALHE_HOSPEDE_STATE :
-                        $scope.findHospedeById ( toParams.id );
-                        break;
-                }
-
-            });
-
-
-            $scope.changeToEdit = function( ev, hospede ) {
-                $state.go( $scope.EDITAR_HOSPEDE_STATE, {id: hospede.id} );
-            };
-
-
-            $scope.changeToDetail = function( ev, hospede ) {
-                var tagName = ev.target.tagName.toLowerCase();
-                if ( tagName != "button" && tagName != "md-icon" ) {
-                    $state.go( $scope.DETALHE_HOSPEDE_STATE, {id: hospede.id} );
-                }
-            };
 
             $scope.listAlunos = function () {
                 alunoService.listAlunosByFilters ( null, null, {
                     callback: function ( result ) {
 
-                        $scope.alunos = result.content;
+                        $scope.model.pageRequest.content = result.content;
+
+                        if( !$scope.model.pageRequest.content.length){
+                            $rootScope.toast("Nenhum aluno encontrado");
+                        }
 
                     }, errorHandler: function ( message, exception ) {
-                        $rootScope.toast("edsfwqsdfv", "red");
-                        document.getElementById("email").focus();
+                        $rootScope.toast(message);
                     }
                 })
             };
 
-            $scope.changeToDetail = function ( id ) {
-                alunoService.findAlunoById ( id, {
+            $scope.changeToDetail = function ( aluno ) {
+                alunoService.findAlunoById ( aluno.id, {
                     callback: function ( result ) {
                         $scope.aluno = result;
+                        $state.go( "aluno.new" );
                     }, errorHandler: function ( message, exception ) {
-                        $rootScope.toast("edsfwqsdfv", "red");
-                        document.getElementById("email").focus();
+                        $rootScope.toast(message);
                     }
                 })
+            };
+
+            $scope.removeAluno = function (ev, aluno) {
+
+                $scope.aluno = aluno;
+
+                var confirm = $mdDialog.confirm()
+                    .title('Excluir aluno')
+                    .content("Você realmente deseja excluir o aluno " + aluno.nome + "?")
+                    .targetEvent(ev)
+                    .ok('Excluir')
+                    .cancel('Cancelar');
+                $mdDialog.show(confirm).then(function () {
+
+                    alunoService.removeAluno ( aluno.id, {
+                        callback: function ( result ) {
+
+                            $rootScope.toast("Aluno removido com sucesso");
+
+                            $scope.model.pageRequest.content.splice(  $scope.model.pageRequest.content.indexOf(  $scope.aluno ), 1 );
+
+
+                        }, errorHandler: function ( message, exception ) {
+                            $rootScope.toast(message);
+
+                        }
+                    })
+
+                });
             };
             
 
@@ -141,49 +116,31 @@
                     alunoService.insertAluno(aluno, {
                         callback: function (result) {
 
-                            $rootScope.toast("user.SaveUserSuccess", "green");
-                            $state.go($scope.LIST_USER_STATE);
-                            $scope.$apply();
+                            $rootScope.toast("Aluno inserido com sucesso");
+                            
+                            $state.go( "aluno.list" );
 
                         }, errorHandler: function (message, exception) {
-                            $rootScope.toast($translate("emailUniqueViolation"), "red");
+                            $rootScope.toast(message);
                         }
                     })
                 } else {
-                    alunoService.update(aluno, {
+                    alunoService.updateAluno(aluno, {
                         callback: function (result) {
 
-                            $rootScope.toast("user.SaveUserSuccess", "green");
-                            $state.go($scope.LIST_USER_STATE);
-                            $scope.$apply();
 
+                            $rootScope.toast("Aluno atualizado com sucesso");
+                            $state.go( "aluno.list" );
                         }, errorHandler: function (message, exception) {
-                            $rootScope.toast($translate("emailUniqueViolation"), "red");
-                            document.getElementById("email").focus();
+                            $rootScope.toast(message);
                         }
                     })
                 }
 
             };
 
+            $scope.listAlunos();
 
-            $scope.onOrderChange = function (order) {
-                if ( order[0] == "-" ) {
-                    order = order.replace("-","");
-                    $scope.model.pageRequest.pageable.sort.direction = "DESC";
-                } else {
-                    $scope.model.pageRequest.pageable.sort.direction = "ASC";
-                }
-
-                $scope.model.pageRequest.pageable.sort.properties[0] = order;
-                $scope.listUsersByFilters ( $scope.model.query.filter.name, $scope.model.query.filter.status );
-            };
-
-
-            $scope.onPaginationChange = function (page, limit) {
-                $scope.model.pageRequest.pageable.page = page ;
-                $scope.model.pageRequest.pageable.size = limit;
-            };
 
         });
 

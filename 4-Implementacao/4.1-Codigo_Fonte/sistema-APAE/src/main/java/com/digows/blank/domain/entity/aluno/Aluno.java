@@ -14,6 +14,7 @@ import javax.persistence.TemporalType;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
+import org.springframework.util.Assert;
 
 import com.digows.blank.domain.entity.responsavel.Responsavel;
 import com.digows.blank.domain.entity.transporte.Transporte;
@@ -97,8 +98,8 @@ public class Aluno extends AbstractEntity implements Serializable
 	@ManyToOne
 	private Transporte transporte;
 
-	@ManyToMany
-	private Set<Responsavel> responsavel;
+//	@ManyToMany
+//	private Set<Responsavel> responsavel;
 	
 
 
@@ -513,18 +514,18 @@ public class Aluno extends AbstractEntity implements Serializable
 	/**
 	 * @return the responsavel
 	 */
-	public Set<Responsavel> getResponsavel()
-	{
-		return responsavel;
-	}
-
-	/**
-	 * @param responsavel the responsavel to set
-	 */
-	public void setResponsavel( Set<Responsavel> responsavel )
-	{
-		this.responsavel = responsavel;
-	}
+//	public Set<Responsavel> getResponsavel()
+//	{
+//		return responsavel;
+//	}
+//
+//	/**
+//	 * @param responsavel the responsavel to set
+//	 */
+//	public void setResponsavel( Set<Responsavel> responsavel )
+//	{
+//		this.responsavel = responsavel;
+//	}
 
 
 
@@ -542,6 +543,11 @@ public class Aluno extends AbstractEntity implements Serializable
 	 *							BEHAVIORS
 	 *-------------------------------------------------------------------*/
 	
+	
+	public void isValid()
+	{
+		Assert.isTrue( !this.getNome().isEmpty(), "Digite o nome do aluno");
+	}
 	
 	
 }

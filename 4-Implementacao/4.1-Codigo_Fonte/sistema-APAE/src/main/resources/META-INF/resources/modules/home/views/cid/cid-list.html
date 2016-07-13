@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org"
+      xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+
+<md-toolbar class="md-table-toolbar md-primary">
+
+    <div layout="row" >
+
+        <div class="md-toolbar-tools">
+            <span>CID</span>
+        </div>
+
+        <md-button ng-if="filtro" class="md-accent md-raised md-hue-1" style="margin-right: 100px" ng-click="listCidInativos(); filtro = false">
+            NOVO
+        </md-button>
+
+        <md-button ng-if="!filtro" class="md-accent md-raised md-hue-1" style="margin-right: 100px" ng-click="listCidInativos(); filtro = true">
+            Voltar
+        </md-button>
+
+    </div>
+
+</md-toolbar>
+
+
+<md-table-container class="table" style="border: 1px #DDDDDD solid">
+    <table md-table style="width: 100%">
+        <thead md-head >
+
+
+        <tr md-row class="header-list">
+            <th md-column ><span>CID10</span></th>
+            <th md-column ><span>Descrição</span></th>
+            <th md-column ><span>Definição</span></th>
+        </tr>
+        </thead>
+        <tbody md-body>
+        <tr md-row  md-auto-select ng-click="changeToEdit($event, cid)" ng-repeat="cid in model.pageRequest.content">
+            <td md-cell >{{cid.cid10}}</td>
+            <td md-cell>{{cid.descr}}</td>
+            <td md-cell>{{cid.definicao}}</td>
+        </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"  md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+
+</html>

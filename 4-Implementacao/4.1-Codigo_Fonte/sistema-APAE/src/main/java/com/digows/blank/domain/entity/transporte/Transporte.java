@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
+import org.springframework.util.Assert;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
 
@@ -37,8 +38,6 @@ public class Transporte extends AbstractEntity implements Serializable
 	@Column(length = 100)
 	private String telefone;
 	
-	@Column(length = 100)
-	private TipoTransporte tipoTransporte;
 
 	/**
 	 * @return the nome
@@ -72,23 +71,13 @@ public class Transporte extends AbstractEntity implements Serializable
 		this.telefone = telefone;
 	}
 
-	/**
-	 * @return the tipoTransporte
-	 */
-	public TipoTransporte getTipoTransporte()
-	{
-		return tipoTransporte;
-	}
-
-	/**
-	 * @param tipoTransporte the tipoTransporte to set
-	 */
-	public void setTipoTransporte( TipoTransporte tipoTransporte )
-	{
-		this.tipoTransporte = tipoTransporte;
-	}
 	
-	
+	public void isValid()
+	{
+		Assert.isTrue( !this.getNome().isEmpty(), "Digite o nome do transporte");
+		Assert.isTrue( !this.getTelefone().isEmpty(), "Digite o telefone do transporte");
+		
+	}
 	
 	
 }

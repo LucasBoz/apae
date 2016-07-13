@@ -61,7 +61,7 @@ public class TransporteService
 	{
 		Assert.notNull( transporte );
 
-//		transporte.setEnabled( true );
+		transporte.isValid();
 
 		return this.transporteRepository.save( transporte );
 	}
@@ -71,7 +71,7 @@ public class TransporteService
 	{
 		Assert.notNull( transporte );
 
-//		transporte.setEnabled( true );
+		transporte.isValid();
 
 		return this.transporteRepository.save( transporte );
 	}
@@ -88,4 +88,13 @@ public class TransporteService
 	{
 		return this.transporteRepository.listByFilters( filter, pageable );
 	}
+	
+
+	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+	public void removeTransporte(  Long transporteId)
+	{
+		this.transporteRepository.delete( transporteId );
+	}
+	
+	
 }

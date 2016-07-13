@@ -8,9 +8,9 @@
      *
      */
     angular.module('home')
-        .controller('ResponsavelController', function( $rootScope, $scope, $state, $importService, $mdToast, $mdDialog ) {
+        .controller('TransporteController', function( $rootScope, $scope, $state, $importService, $mdToast, $mdDialog ) {
 
-            $importService("responsavelService");
+            $importService("transporteService");
 
             $scope.model = {
                 query : {
@@ -37,41 +37,42 @@
             ];
 
 
-            $scope.listResponsaveis = function () {
-                responsavelService.listResponsavelByFilters ( null, null, {
+            $scope.listTransporte = function () {
+                transporteService.listTransportesByFilters ( null, null, {
                     callback: function ( result ) {
 
                         $scope.model.pageRequest.content = result.content;
 
                         if( !$scope.model.pageRequest.content.length){
-                            $rootScope.toast("Nenhum responsável encontrado");
+                            $rootScope.toast("Nenhum transporte encontrado");
                         }
+
                     }, errorHandler: function ( message, exception ) {
                         $rootScope.toast(message);
-                        console.log("DEBUG");
+
                     }
                 })
             };
 
-            $scope.removeResponsavel = function (ev, responsavel) {
+            $scope.removeTransporte = function (ev, transporte) {
 
                 var confirm = $mdDialog.confirm()
-                    .title('Excluir responsável')
-                    .content("Você realmente deseja excluir o responsável " + responsavel.nome + "?")
+                    .title('Excluir transporte')
+                    .content("Você realmente deseja excluir o transporte " + transporte.nome + "?")
                     .targetEvent(ev)
                     .ok('Excluir')
                     .cancel('Cancelar');
                 $mdDialog.show(confirm).then(function () {
 
-                    responsavelService.removeResponsavel ( responsavel.id, {
+                    transporteService.removeTransporte ( transporte.id, {
                         callback: function ( result ) {
 
-                            $rootScope.toast("Responsável removido com sucesso");
+                            $scope.model.pageRequest.content.splice(  $scope.model.pageRequest.content.indexOf(transporte), 1 );
 
-                            $scope.model.pageRequest.content.splice(  $scope.model.pageRequest.content.indexOf(responsavel), 1 );
-
+                            $scope.toast("Transporte excluido com sucesso");
 
                         }, errorHandler: function ( message, exception ) {
+
                             $rootScope.toast(message);
 
                         }
@@ -80,22 +81,19 @@
                 });
 
 
-
             };
 
-
-
             
             
-            $scope.changeToEdit = function (ev, responsavel) {
+            $scope.changeToEdit = function (ev, transporte) {
                 
                 $mdDialog.show({
-                        controller: ResponsavelDialogController,
-                        templateUrl: 'modules/home/views/responsavel/responsavel-dialog/responsavel-dialog.html',
+                        controller: TransporteDialogController,
+                        templateUrl: 'modules/home/views/transporte/transporte-dialog/transporte-dialog.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         clickOutsideToClose:true,
-                        locals: {responsavel: responsavel, content: $scope.model.pageRequest.content}
+                        locals: {transporte: transporte, content: $scope.model.pageRequest.content }
                     })
                     .then(function(answer) {
 
@@ -103,39 +101,38 @@
           
             };
 
-            function ResponsavelDialogController($scope, $mdDialog, responsavel, content) {
+            function TransporteDialogController($scope, $mdDialog, transporte, content) {
 
-                $scope.oldResponsavel = responsavel;
-
-                $scope.responsavel =  angular.copy(responsavel);
-
+                $scope.oldTransporte = transporte;
                 $scope.content = content;
 
-                $scope.save = function( responsavel ){
+                $scope.transporte = angular.copy(transporte);
 
-                    if (!responsavel.id) {
+                $scope.save = function( transporte ){
 
-                        responsavelService.insertResponsavel(responsavel, {
+                    if (!transporte.id) {
+
+                        transporteService.insertTransporte(transporte, {
                             callback: function (result) {
-
-                                $rootScope.toast("Responsável inserido com sucesso");
-
                                 $scope.content.push( result );
+                                $rootScope.toast("Transporte inserido com sucesso");
 
                                 $mdDialog.hide();
 
                             }, errorHandler: function (message, exception) {
+
                                 $rootScope.toast(message);
+
                             }
                         })
                     } else {
-                        responsavelService.updateResponsavel(responsavel, {
+                        transporteService.updateTransporte(transporte, {
                             callback: function (result) {
 
-                                $rootScope.toast("Responsável atualizado com sucesso");
+                                $rootScope.toast("Transporte atualizado com sucesso");
 
                                 //Atualiza o responsavel da listagem
-                                $scope.content[$scope.content.indexOf($scope.oldResponsavel)] = result;
+                                $scope.content[$scope.content.indexOf($scope.oldTransporte)] = result;
 
                                 $mdDialog.hide();
 
@@ -153,8 +150,9 @@
                 $scope.cancel = function() {
                     $mdDialog.cancel();
                 };
-                $scope.answer = function( responsavel ) {
-                    $scope.save(responsavel);
+                $scope.answer = function( transporte ) {
+
+                    $scope.save(transporte);
                 };
 
 
@@ -163,7 +161,7 @@
             //
 
 
-            $scope.listResponsaveis();
+            $scope.listTransporte();
 
         });
 

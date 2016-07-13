@@ -27,6 +27,9 @@
 			url: "/",
 			templateUrl: './modules/home/views/home/home-index.html'
 		})
+		/**
+		 * ALUNO
+		 */
 		.state('aluno', {
 			url: "/aluno",
 			templateUrl: './modules/home/views/aluno/aluno-index.html',
@@ -49,6 +52,24 @@
 			url: "/editar/{id:[0-9]{1,10}}",
 			templateUrl: './modules/home/views/aluno/aluno-edit.html'
 		})
+			
+		/**
+		 * CID
+		 */
+		.state('cid', {
+			url: "/",
+			templateUrl: './modules/home/views/cid/cid-index.html',
+			controller: 'CidController',
+			abstract: true
+		})
+		.state('cid.list', {
+			url: "cid",
+			templateUrl: './modules/home/views/cid/cid-list.html'
+		})
+			
+		/**
+		 * RESPONSAVEL
+		 */
 		.state('responsavel', {
 			url: "/",
 			templateUrl: './modules/home/views/responsavel/responsavel-index.html',
@@ -58,7 +79,36 @@
 		.state('responsavel.list', {
 			url: "responsavel",
 			templateUrl: './modules/home/views/responsavel/responsavel-list.html'
+		})
+
+		/**
+		 * TRANSPORTE
+		 */
+		.state('transporte', {
+			url: "/",
+			templateUrl: './modules/home/views/transporte/transporte-index.html',
+			controller: 'TransporteController',
+			abstract: true
+		})
+		.state('transporte.list', {
+			url: "transporte",
+			templateUrl: './modules/home/views/transporte/transporte-list.html'
+		})
+
+		/**
+		 * USUÁRIOS
+		 */
+		.state('usuario', {
+			url: "/",
+			templateUrl: './modules/home/views/usuario/usuario-index.html',
+			controller: 'UserController',
+			abstract: true
+		})
+		.state('usuario.list', {
+			url: "usuario",
+			templateUrl: './modules/home/views/usuario/usuario-list.html'
 		});
+
 	});
 
 	/**

@@ -8,9 +8,9 @@
      *
      */
     angular.module('home')
-        .controller('ResponsavelController', function( $rootScope, $scope, $state, $importService, $mdToast, $mdDialog ) {
+        .controller('UserController', function( $rootScope, $scope, $state, $importService, $mdToast, $mdDialog ) {
 
-            $importService("responsavelService");
+            $importService("accountService");
 
             $scope.model = {
                 query : {
@@ -37,15 +37,12 @@
             ];
 
 
-            $scope.listResponsaveis = function () {
-                responsavelService.listResponsavelByFilters ( null, null, {
+            $scope.listUsers = function () {
+                accountService.listUsersByFilters ( null, null, {
                     callback: function ( result ) {
 
                         $scope.model.pageRequest.content = result.content;
 
-                        if( !$scope.model.pageRequest.content.length){
-                            $rootScope.toast("Nenhum responsável encontrado");
-                        }
                     }, errorHandler: function ( message, exception ) {
                         $rootScope.toast(message);
                         console.log("DEBUG");
@@ -53,26 +50,23 @@
                 })
             };
 
-            $scope.removeResponsavel = function (ev, responsavel) {
+            $scope.removeUser = function (ev, user) {
 
                 var confirm = $mdDialog.confirm()
-                    .title('Excluir responsável')
-                    .content("Você realmente deseja excluir o responsável " + responsavel.nome + "?")
+                    .title('Excluir usuário')
+                    .content("Você realmente deseja excluir o usuário " + user.name + "?")
                     .targetEvent(ev)
                     .ok('Excluir')
                     .cancel('Cancelar');
                 $mdDialog.show(confirm).then(function () {
 
-                    responsavelService.removeResponsavel ( responsavel.id, {
+                    accountService.removeUser ( user.id, {
                         callback: function ( result ) {
 
-                            $rootScope.toast("Responsável removido com sucesso");
-
-                            $scope.model.pageRequest.content.splice(  $scope.model.pageRequest.content.indexOf(responsavel), 1 );
-
+                            $scope.model.pageRequest.content = result.content;
 
                         }, errorHandler: function ( message, exception ) {
-                            $rootScope.toast(message);
+                            $rootScope.toast("message");
 
                         }
                     })
@@ -83,61 +77,44 @@
 
             };
 
+            $scope.changeToEdit = function (ev, user) {
 
-
-            
-            
-            $scope.changeToEdit = function (ev, responsavel) {
-                
                 $mdDialog.show({
-                        controller: ResponsavelDialogController,
-                        templateUrl: 'modules/home/views/responsavel/responsavel-dialog/responsavel-dialog.html',
+                        controller: UserDialogController,
+                        templateUrl: 'modules/home/views/usuario/usuario-dialog/usuario-dialog.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         clickOutsideToClose:true,
-                        locals: {responsavel: responsavel, content: $scope.model.pageRequest.content}
+                        locals: {user: angular.copy(user) }
                     })
                     .then(function(answer) {
 
                     });
-          
+
             };
 
-            function ResponsavelDialogController($scope, $mdDialog, responsavel, content) {
+            function UserDialogController($scope, $mdDialog, user) {
 
-                $scope.oldResponsavel = responsavel;
+                $scope.user = user;
 
-                $scope.responsavel =  angular.copy(responsavel);
+                $scope.save = function( user ){
 
-                $scope.content = content;
+                    if (!user.id) {
 
-                $scope.save = function( responsavel ){
-
-                    if (!responsavel.id) {
-
-                        responsavelService.insertResponsavel(responsavel, {
+                        accountService.insertUser( user, {
                             callback: function (result) {
 
-                                $rootScope.toast("Responsável inserido com sucesso");
-
-                                $scope.content.push( result );
-
-                                $mdDialog.hide();
+                                $rootScope.toast("Usuário inserido com sucesso");
 
                             }, errorHandler: function (message, exception) {
                                 $rootScope.toast(message);
                             }
                         })
                     } else {
-                        responsavelService.updateResponsavel(responsavel, {
+                        accountService.updateUser(user, {
                             callback: function (result) {
 
-                                $rootScope.toast("Responsável atualizado com sucesso");
-
-                                //Atualiza o responsavel da listagem
-                                $scope.content[$scope.content.indexOf($scope.oldResponsavel)] = result;
-
-                                $mdDialog.hide();
+                                $rootScope.toast("Usuário atualizado com sucesso");
 
                             }, errorHandler: function (message, exception) {
                                 $rootScope.toast(message);
@@ -153,17 +130,15 @@
                 $scope.cancel = function() {
                     $mdDialog.cancel();
                 };
-                $scope.answer = function( responsavel ) {
-                    $scope.save(responsavel);
+                $scope.answer = function( user ) {
+                    $mdDialog.hide();
+                    $scope.save(user);
                 };
 
 
             }
 
-            //
-
-
-            $scope.listResponsaveis();
+            $scope.listUsers();
 
         });
 

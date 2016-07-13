@@ -13,6 +13,7 @@ import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
+import org.springframework.util.Assert;
 
 /**
  * @author lucas
@@ -149,6 +150,13 @@ public class Responsavel extends AbstractEntity implements Serializable
 	public void setTelefone( String telefone )
 	{
 		this.telefone = telefone;
+	}
+	
+	public void isValid()
+	{
+		Assert.isTrue( !this.getNome().isEmpty(), "Digite o nome do responsável");
+		Assert.isTrue( !this.getTelefone().isEmpty(), "Digite o telefone do responsável");
+		
 	}
 	
 	
