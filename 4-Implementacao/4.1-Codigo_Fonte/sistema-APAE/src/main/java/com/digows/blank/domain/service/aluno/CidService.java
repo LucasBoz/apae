@@ -56,7 +56,9 @@ public class CidService
 	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public void updateCid( Cid cid)
 	{
-	
+		Assert.notNull( cid );
+		Assert.notNull( cid.getId() );
+		
 		Cid cid10 = findCidById(cid.getId());
 		
 		cid10.setAtivo( cid.getAtivo() );
