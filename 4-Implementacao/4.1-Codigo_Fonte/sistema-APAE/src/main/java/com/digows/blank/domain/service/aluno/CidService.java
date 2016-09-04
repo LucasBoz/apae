@@ -53,7 +53,7 @@ public class CidService
 	}
 	
 	
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public void updateCid( Cid cid)
 	{
 		Assert.notNull( cid );

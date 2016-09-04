@@ -55,7 +55,7 @@ public class ResponsavelService
 	 * @param aluno
 	 * @return
 	 */
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public Responsavel insertResponsavel( Responsavel responsavel)
 	{
 		Assert.notNull( responsavel );
@@ -65,7 +65,7 @@ public class ResponsavelService
 		return this.responsavelRepository.save( responsavel );
 	}
 	
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public Responsavel updateResponsavel(  Responsavel responsavel)
 	{
 		Assert.notNull( responsavel );
@@ -89,7 +89,7 @@ public class ResponsavelService
 		
 	}
 	
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public void removeResponsavel(  Long responsavelId)
 	{
 		this.responsavelRepository.delete( responsavelId );

@@ -11,9 +11,9 @@ import javax.persistence.Table;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
-
-import br.com.eits.common.domain.entity.AbstractEntity;
 import org.springframework.util.Assert;
+
+import com.digows.blank.domain.entity.pessoa.Pessoa;
 
 /**
  * @author lucas
@@ -24,8 +24,27 @@ import org.springframework.util.Assert;
 @Audited
 @Table(name = "\"responsavel\"")
 @DataTransferObject ( javascript = "Responsavel" )
-public class Responsavel extends AbstractEntity implements Serializable
+public class Responsavel extends Pessoa implements Serializable
 {
+	/**
+	 * @return the localTrabalho
+	 */
+	public String getLocalTrabalho()
+	{
+		return localTrabalho;
+	}
+
+
+	/**
+	 * @param localTrabalho the localTrabalho to set
+	 */
+	public void setLocalTrabalho( String localTrabalho )
+	{
+		this.localTrabalho = localTrabalho;
+	}
+
+
+
 	/**
 	 * 
 	 */
@@ -44,118 +63,23 @@ public class Responsavel extends AbstractEntity implements Serializable
 	public Responsavel(){
 		super();
 	}
-	
-	public Responsavel( String nome, String rg, String cpf, String localTrabalho, String telefone )
-	{
-		super();
-		this.nome = nome;
-		this.rg = rg;
-		this.cpf = cpf;
-		this.localTrabalho = localTrabalho;
-		this.telefone = telefone;
-	}
 
-	@Column(nullable = false, length = 100)
-	private String nome;
-	
-	@Column( length = 11 )
-	private String rg;
-	
-	@Column( length = 11 )
-	private String cpf;
+
 	
 	@Column(length = 100)
 	private String localTrabalho;
-	
-	@Column(nullable = false, length = 50)
-	private String telefone;
+
 	
 //	Getters and setters
 
 	/**
 	 * @return the nome
 	 */
-	public String getNome()
-	{
-		return nome;
-	}
 
-	/**
-	 * @param nome the nome to set
-	 */
-	public void setNome( String nome )
-	{
-		this.nome = nome;
-	}
-
-	/**
-	 * @return the rg
-	 */
-	public String getRg()
-	{
-		return rg;
-	}
-
-	/**
-	 * @param rg the rg to set
-	 */
-	public void setRg( String rg )
-	{
-		this.rg = rg;
-	}
-
-	/**
-	 * @return the cpf
-	 */
-	public String getCpf()
-	{
-		return cpf;
-	}
-
-	/**
-	 * @param cpf the cpf to set
-	 */
-	public void setCpf( String cpf )
-	{
-		this.cpf = cpf;
-	}
-
-	/**
-	 * @return the localTrabalho
-	 */
-	public String getLocalTrabalho()
-	{
-		return localTrabalho;
-	}
-
-	/**
-	 * @param localTrabalho the localTrabalho to set
-	 */
-	public void setLocalTrabalho( String localTrabalho )
-	{
-		this.localTrabalho = localTrabalho;
-	}
-
-	/**
-	 * @return the telefone
-	 */
-	public String getTelefone()
-	{
-		return telefone;
-	}
-
-	/**
-	 * @param telefone the telefone to set
-	 */
-	public void setTelefone( String telefone )
-	{
-		this.telefone = telefone;
-	}
 	
 	public void isValid()
 	{
 		Assert.isTrue( !this.getNome().isEmpty(), "Digite o nome do responsável");
-		Assert.isTrue( !this.getTelefone().isEmpty(), "Digite o telefone do responsável");
 		
 	}
 	

@@ -36,28 +36,25 @@ public class Cid  extends AbstractEntity
 	 */
 	private static final long serialVersionUID = 7067237191070868263L;
 	
-	@Column(length = 123)
+	@Column(length = 100)
 	private String cid10;
 	
-	@Column(length = 123)
-	private String opc;
+	@Column(length = 100, name="cat")
+	private String categoria;
 	
-	@Column(length = 100)
-	private String cat;
+	@Column(length = 100, name="subcat")
+	private String subcategoria;
 	
-	@Column(length = 123)
-	private String subcat;
-	
-	@Column(length = 50)
-	private String descr;
+	@Column(length = 50, name="descr")
+	private String descricao;
 	
 	@Column(length = 100)
 	private String definicao;
 	
-	@Column(length = 123)
-	private String restrsexo;
+	@Column(length = 10, name="restsexo")
+	private String restricaoSexo;
 	
-	@Column(length = 123)
+	@Column(length = 20)
 	private Boolean ativo;
 
 	
@@ -65,42 +62,12 @@ public class Cid  extends AbstractEntity
 	/**
 	 * 
 	 */
-//	public Cid()
-//	{
-//		super();
-//	}
-
-	/**
-	 * @return the definicao
-	 */
-	public String getDefinicao()
+	public Cid()
 	{
-		return definicao;
+		super();
 	}
 
-	/**
-	 * @param definicao the definicao to set
-	 */
-	public void setDefinicao( String definicao )
-	{
-		this.definicao = definicao;
-	}
 
-	/**
-	 * @return the ativo
-	 */
-	public Boolean getAtivo()
-	{
-		return ativo;
-	}
-
-	/**
-	 * @param ativo the ativo to set
-	 */
-	public void setAtivo( Boolean ativo )
-	{
-		this.ativo = ativo;
-	}
 
 	/**
 	 * @return the cid10
@@ -110,6 +77,8 @@ public class Cid  extends AbstractEntity
 		return cid10;
 	}
 
+
+
 	/**
 	 * @param cid10 the cid10 to set
 	 */
@@ -118,89 +87,125 @@ public class Cid  extends AbstractEntity
 		this.cid10 = cid10;
 	}
 
-	/**
-	 * @return the opc
-	 */
-	public String getOpc()
-	{
-		return opc;
-	}
+
 
 	/**
-	 * @param opc the opc to set
+	 * @return the categoria
 	 */
-	public void setOpc( String opc )
+	public String getCategoria()
 	{
-		this.opc = opc;
+		return categoria;
 	}
 
-	/**
-	 * @return the cat
-	 */
-	public String getCat()
-	{
-		return cat;
-	}
+
 
 	/**
-	 * @param cat the cat to set
+	 * @param categoria the categoria to set
 	 */
-	public void setCat( String cat )
+	public void setCategoria( String categoria )
 	{
-		this.cat = cat;
+		this.categoria = categoria;
 	}
 
-	/**
-	 * @return the subcat
-	 */
-	public String getSubcat()
-	{
-		return subcat;
-	}
+
 
 	/**
-	 * @param subcat the subcat to set
+	 * @return the subcategoria
 	 */
-	public void setSubcat( String subcat )
+	public String getSubcategoria()
 	{
-		this.subcat = subcat;
+		return subcategoria;
 	}
 
-	/**
-	 * @return the descr
-	 */
-	public String getDescr()
-	{
-		return descr;
-	}
+
 
 	/**
-	 * @param descr the descr to set
+	 * @param subcategoria the subcategoria to set
 	 */
-	public void setDescr( String descr )
+	public void setSubcategoria( String subcategoria )
 	{
-		this.descr = descr;
+		this.subcategoria = subcategoria;
 	}
 
-	/**
-	 * @return the restrsexo
-	 */
-	public String getRestrsexo()
-	{
-		return restrsexo;
-	}
+
 
 	/**
-	 * @param restrsexo the restrsexo to set
+	 * @return the descricao
 	 */
-	public void setRestrsexo( String restrsexo )
+	public String getDescricao()
 	{
-		this.restrsexo = restrsexo;
+		return descricao;
 	}
 
+
+
 	/**
-	 * @return the cid10
+	 * @param descricao the descricao to set
 	 */
+	public void setDescricao( String descricao )
+	{
+		this.descricao = descricao;
+	}
+
+
+
+	/**
+	 * @return the definicao
+	 */
+	public String getDefinicao()
+	{
+		return definicao;
+	}
+
+
+
+	/**
+	 * @param definicao the definicao to set
+	 */
+	public void setDefinicao( String definicao )
+	{
+		this.definicao = definicao;
+	}
+
+
+
+	/**
+	 * @return the restricaoSexo
+	 */
+	public String getRestricaoSexo()
+	{
+		return restricaoSexo;
+	}
+
+
+
+	/**
+	 * @param restricaoSexo the restricaoSexo to set
+	 */
+	public void setRestricaoSexo( String restricaoSexo )
+	{
+		this.restricaoSexo = restricaoSexo;
+	}
+
+
+
+	/**
+	 * @return the ativo
+	 */
+	public Boolean getAtivo()
+	{
+		return ativo;
+	}
+
+
+
+	/**
+	 * @param ativo the ativo to set
+	 */
+	public void setAtivo( Boolean ativo )
+	{
+		this.ativo = ativo;
+	}
 
 	
 	

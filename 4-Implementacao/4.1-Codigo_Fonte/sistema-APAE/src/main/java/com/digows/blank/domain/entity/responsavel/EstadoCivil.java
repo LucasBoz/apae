@@ -7,7 +7,7 @@ package com.digows.blank.domain.entity.responsavel;
  * @author lucas
  *
  */
-public enum TipoResponsavel
+public enum EstadoCivil
 {
-	PAI,MAE,TIO, AVO,OUTROS
+	SOLTEIRO, CASADO, SEPARADO, DIVORCIADO, VIUVO
 }

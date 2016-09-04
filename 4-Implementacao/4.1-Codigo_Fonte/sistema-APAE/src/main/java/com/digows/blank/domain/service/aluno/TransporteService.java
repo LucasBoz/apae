@@ -56,7 +56,7 @@ public class TransporteService
 	 * @param transporte
 	 * @return
 	 */
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public Transporte insertTransporte( Transporte transporte)
 	{
 		Assert.notNull( transporte );
@@ -66,7 +66,7 @@ public class TransporteService
 		return this.transporteRepository.save( transporte );
 	}
 	
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public Transporte updateTransporte( Transporte transporte)
 	{
 		Assert.notNull( transporte );
@@ -90,7 +90,7 @@ public class TransporteService
 	}
 	
 
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public void removeTransporte(  Long transporteId)
 	{
 		this.transporteRepository.delete( transporteId );

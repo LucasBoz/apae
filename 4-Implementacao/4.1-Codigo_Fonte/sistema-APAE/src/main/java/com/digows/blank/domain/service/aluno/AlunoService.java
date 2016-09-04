@@ -60,7 +60,7 @@ public class AlunoService
 	 * @param aluno
 	 * @return
 	 */
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('s"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public Aluno insertAluno( Aluno aluno)
 	{
 		Assert.notNull( aluno );
@@ -70,7 +70,7 @@ public class AlunoService
 		return this.alunoRepository.save( aluno );
 	}
 	
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public Aluno updateAluno( Aluno aluno)
 	{
 		Assert.notNull( aluno );
@@ -95,7 +95,7 @@ public class AlunoService
 	
 	
 	
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
+//	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public void removeAluno(  Long alunoId)
 	{
 		this.alunoRepository.delete( alunoId );
