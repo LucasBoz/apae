@@ -1,7 +1,6 @@
 package com.digows.blank.test.domain.service;
 
 import org.junit.Assert;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,7 +8,6 @@ import org.springframework.security.authentication.AuthenticationCredentialsNotF
 import org.springframework.security.test.context.support.WithUserDetails;
 
 import com.digows.blank.domain.entity.account.User;
-import com.digows.blank.domain.entity.account.UserRole;
 import com.digows.blank.domain.service.AccountService;
 import com.digows.blank.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;

@@ -1,4 +1,4 @@
-package com.digows.blank.domain.repository.aluno;
+package com.digows.blank.domain.repository.responsavel;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +21,6 @@ public interface IResponsavelRepository extends JpaRepository<Responsavel, Long>
 			  "WHERE ( FILTER(responsavel.id, :filter) = TRUE "
 			  	 + "OR FILTER(responsavel.nome, :filter) = TRUE )")
 	public Page<Responsavel> listByFilters( @Param("filter") String filter, Pageable pageable );
-	
 	
 	
 }

@@ -27,7 +27,18 @@ public class CidTest extends AbstractIntegrationTests
 	@Autowired
 	private CidService cidService;
 
+	
 	@Test
+	public void teste123()
+	{
+	
+		Assert.assertEquals( "qwe", "qwe");
+
+	}
+	
+	
+	@Test
+	@WithUserDetails("admin@email.com")
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 			"/dataset/CidDataSet.xml"
 	})

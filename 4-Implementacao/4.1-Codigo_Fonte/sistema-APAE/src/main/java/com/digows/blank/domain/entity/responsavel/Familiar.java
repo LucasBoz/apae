@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.digows.blank.domain.entity.aluno;
+package com.digows.blank.domain.entity.responsavel;
 
 import java.io.Serializable;
 
@@ -11,7 +11,8 @@ import javax.persistence.ManyToOne;
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
 
-import com.digows.blank.domain.entity.responsavel.Responsavel;
+import com.digows.blank.domain.entity.aluno.Aluno;
+import com.digows.blank.domain.entity.aluno.TipoResponsavel;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
 

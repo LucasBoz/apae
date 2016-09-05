@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.digows.blank.domain.entity.aluno.Aluno;
 import com.digows.blank.domain.service.aluno.AlunoService;
-import com.digows.blank.test.domain.AbstractUnitTests;
+import com.digows.blank.test.domain.AbstractIntegrationTests;
 
 /**
  * @author lucas
  *
  */
-public class AlunoTests extends AbstractUnitTests
+public class AlunoTests extends AbstractIntegrationTests
 {
 	
 	@Autowired
@@ -28,15 +28,12 @@ public class AlunoTests extends AbstractUnitTests
 		
 		String alunoNome = "Nome Teste";
 	
-//		aluno.setNome( alunoNome );
+		aluno.setNome( alunoNome );
 		
 		aluno = alunoService.insertAluno( aluno );
 		
 		Assert.assertNotNull( aluno );
-		
-		alunoService.findAlunoById( aluno.getId() );
-		
-		Assert.assertNotNull( aluno );
+	
 		
 //		Assert.assertEquals( alunoNome, aluno.getNome());
 	}

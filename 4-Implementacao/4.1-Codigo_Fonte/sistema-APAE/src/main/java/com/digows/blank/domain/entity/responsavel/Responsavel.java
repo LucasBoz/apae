@@ -15,6 +15,8 @@ import org.springframework.util.Assert;
 
 import com.digows.blank.domain.entity.pessoa.Pessoa;
 
+import br.com.eits.common.domain.entity.AbstractEntity;
+
 /**
  * @author lucas
  *
@@ -26,6 +28,12 @@ import com.digows.blank.domain.entity.pessoa.Pessoa;
 @DataTransferObject ( javascript = "Responsavel" )
 public class Responsavel extends Pessoa implements Serializable
 {
+	
+	
+	@Column(length = 100)
+	private String localTrabalho;
+
+	
 	/**
 	 * @return the localTrabalho
 	 */
@@ -65,9 +73,6 @@ public class Responsavel extends Pessoa implements Serializable
 	}
 
 
-	
-	@Column(length = 100)
-	private String localTrabalho;
 
 	
 //	Getters and setters
@@ -79,7 +84,7 @@ public class Responsavel extends Pessoa implements Serializable
 	
 	public void isValid()
 	{
-		Assert.isTrue( !this.getNome().isEmpty(), "Digite o nome do responsável");
+//		Assert.isTrue( !this.getNome().isEmpty(), "Digite o nome do responsável");
 		
 	}
 	

@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
 
 import com.digows.blank.domain.entity.account.UserRole;
 import com.digows.blank.domain.entity.responsavel.Responsavel;
-import com.digows.blank.domain.repository.aluno.IResponsavelRepository;
+import com.digows.blank.domain.repository.responsavel.IResponsavelRepository;
 
 /**
  * 
@@ -58,9 +58,9 @@ public class ResponsavelService
 //	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.MANAGER_VALUE+"')")
 	public Responsavel insertResponsavel( Responsavel responsavel)
 	{
-		Assert.notNull( responsavel );
-		
-		responsavel.isValid();
+//		Assert.notNull( responsavel );
+//		
+//		responsavel.isValid();
 
 		return this.responsavelRepository.save( responsavel );
 	}

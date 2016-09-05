@@ -1,4 +1,4 @@
-package com.digows.blank.domain.repository.aluno;
+package com.digows.blank.domain.repository.transporte;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

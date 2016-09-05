@@ -8,6 +8,7 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
@@ -23,17 +24,33 @@ import br.com.eits.common.domain.entity.AbstractEntity;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Audited
 @DataTransferObject(javascript = "Pessoa")
 public class Pessoa extends AbstractEntity implements Serializable
 {
 
-	/**q
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1268312855760683864L;
 	
+
+	/**
+	 * @return the sexo
+	 */
+	public Sexo getSexo()
+	{
+		return sexo;
+	}
+
+	/**
+	 * @param sexo the sexo to set
+	 */
+	public void setSexo( Sexo sexo )
+	{
+		this.sexo = sexo;
+	}
+
 	@Column(nullable = false, length = 100)
 	private String nome;
 	

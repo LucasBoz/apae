@@ -3,11 +3,10 @@
 	<public.user
 		id="1"
 		created="2016-03-30 00:00:00"
-		ativo="false"
+		ativo="FALSE"
 		cat="A"
 		cid10="A123"
 		definicao="DEF"
-		opc="opc"
 		restrsexo="restrsexo"
 		subcat="subcat"
 		descr="DESC"/>

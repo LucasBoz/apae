@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
 
 import com.digows.blank.domain.entity.account.UserRole;
 import com.digows.blank.domain.entity.transporte.Transporte;
-import com.digows.blank.domain.repository.aluno.ITransporteRepository;
+import com.digows.blank.domain.repository.transporte.ITransporteRepository;
 
 /**
  * 
