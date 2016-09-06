@@ -5,6 +5,8 @@ package com.digows.blank.domain.service.funcionario;
 
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -56,4 +58,10 @@ public class FuncionarioService
 		this.funcionarioRepository.delete( funcionarioId );
 	}
 	
+	
+	public Page<Funcionario> listByFilters( String filter, PageRequest page ){
+		
+		return this.funcionarioRepository.listByFilters( filter, page );
+		
+	}
 }

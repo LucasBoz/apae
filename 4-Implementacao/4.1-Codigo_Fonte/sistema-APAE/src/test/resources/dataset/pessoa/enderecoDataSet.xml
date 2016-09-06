@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.endereco
+		id="1000"
+		created="2016-09-04 22:58:09.967"
+		bairro="Bairro"
+		cep="123122"
+		complemento="aASDasd"
+		logradouro="Rua tal"
+		municipio="Foz do iguaçu"
+		numero="ER-40"
+		uf="PR"
+	/>
+	<public.endereco
+		id="1001"
+		created="2016-09-04 22:58:09.967"
+		bairro="Bairro"
+		cep="123122"
+		complemento="AP 123q"
+		logradouro="Rua tal"
+		municipio="Foz do iguaçu"
+		numero="60"
+		uf="PR"
+	/>
+	<public.endereco
+		id="1002"
+		created="2016-09-04 22:58:09.967"
+		bairro="Bairro"
+		cep="11"
+		complemento="Comp"
+		logradouro="Rua tal"
+		municipio="Foz do iguaçu"
+		numero="123"
+		uf="PR"
+	/>
+	<public.endereco
+		id="1003"
+		created="2016-09-04 22:58:09.967"
+		bairro="Bela Vista"
+		cep="123122"
+		complemento="Complemento"
+		logradouro="Avenida dos estados"
+		municipio="Três passos"
+		numero="300"
+		uf="RS"
+	/>
+</dataset>

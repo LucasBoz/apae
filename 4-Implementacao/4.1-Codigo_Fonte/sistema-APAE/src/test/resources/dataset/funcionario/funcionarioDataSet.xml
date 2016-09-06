@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+		<public.pessoa
+		dtype="Funcionario"
+		id="1000"
+		created="2015-03-30 00:00:00"
+		nome="nome teste"
+		rg="123123"
+		sexo="0"
+		cor="3"
+		email="teste@asd.com"
+		escolaridade="1"
+		nome_mae="Nome da mae teste"
+		nome_pai="Nome pai teste"
+		numero_identificacao_social="123-412-DE"
+		tipodeficiencia="4"
+		endereco_id="1000"
+		local_nascimento_id="1001"
+	/>
+	<public.pessoa
+		dtype="Funcionario"
+		id="1001"
+		created="2015-03-30 00:00:00"
+		nome="nome teste funcionario 2"
+		rg="123123"
+		sexo="1"
+		cor="2"
+		email="teste2@asd.com"
+		escolaridade="2"
+		nome_mae="Nome da mae teste 2"
+		nome_pai="Nome pai teste 2"
+		numero_identificacao_social="121233-412-DE"
+		tipodeficiencia="3"
+		endereco_id="1002"
+		local_nascimento_id="1003"
+	/>
+		
+	<public.pessoa
+		dtype="Funcionario"
+		id="1002"
+		created="2015-03-30 00:00:00"
+		nome="nome teste"
+		rg="1qwe123"
+		escolaridade="0"
+		sexo="0"
+		cor="1"
+		email="t1wqee@asd.com"
+		tipodeficiencia="2"
+		
+	/>
+</dataset>

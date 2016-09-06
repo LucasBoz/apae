@@ -14,6 +14,7 @@ import javax.persistence.InheritanceType;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
 
@@ -51,7 +52,9 @@ public class Pessoa extends AbstractEntity implements Serializable
 		this.sexo = sexo;
 	}
 
+	
 	@Column(nullable = false, length = 100)
+	@NotEmpty( message="Nome é obrigatório meu" )
 	private String nome;
 	
 	@Column( length = 20)

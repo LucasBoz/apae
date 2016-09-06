@@ -74,13 +74,13 @@ public class Funcionario extends Pessoa implements Serializable
     @ElementCollection( targetClass= CursosEspecificos.class, fetch= FetchType.EAGER )
     @CollectionTable(name = "funcionario_curso_especificos", joinColumns = @JoinColumn(name = "funcionario_id"))
     @Column(nullable = false, name= "curso_especifico")
-    @Enumerated( EnumType.STRING )
+    @Enumerated( EnumType.ORDINAL )
     private Set<CursosEspecificos> CursosEspecificos = new HashSet<>();
     
     @ElementCollection( targetClass= Funcao.class, fetch= FetchType.EAGER )
     @CollectionTable(name = "funcionario_funcao", joinColumns = @JoinColumn(name = "funcionario_id"))
     @Column(nullable = false, name= "funcao")
-    @Enumerated( EnumType.STRING )
+    @Enumerated( EnumType.ORDINAL )
     private Set<Funcao> Funcao = new HashSet<>();
     
 //
