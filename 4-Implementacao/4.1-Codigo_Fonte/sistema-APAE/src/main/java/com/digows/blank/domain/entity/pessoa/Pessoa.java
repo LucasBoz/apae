@@ -36,6 +36,25 @@ public class Pessoa extends AbstractEntity implements Serializable
 	private static final long serialVersionUID = 1268312855760683864L;
 	
 
+
+	@Column(nullable = false, length = 100)
+	@NotEmpty( message="Nome é obrigatório" )
+	private String nome;
+	
+	@Column( length = 20)
+	private String rg;
+	
+	@Column( length = 20)
+	private String cpf;
+	
+	@Column( length = 100)
+	private Calendar dataNascimento;
+	
+	@Column( length = 10)
+	private Sexo sexo;
+
+	
+	
 	/**
 	 * @return the sexo
 	 */
@@ -53,22 +72,6 @@ public class Pessoa extends AbstractEntity implements Serializable
 	}
 
 	
-	@Column(nullable = false, length = 100)
-	@NotEmpty( message="Nome é obrigatório meu" )
-	private String nome;
-	
-	@Column( length = 20)
-	private String rg;
-	
-	@Column( length = 20)
-	private String cpf;
-	
-	@Column( length = 100)
-	private Calendar dataNascimento;
-	
-	@Column( length = 10)
-	private Sexo sexo;
-
 	/**
 	 * @return the nome
 	 */

@@ -83,10 +83,6 @@
 
             };
 
-
-
-            
-            
             $scope.changeToEdit = function (ev, responsavel) {
                 
                 $mdDialog.show({

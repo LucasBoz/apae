@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationCredentialsNotF
 import org.springframework.security.test.context.support.WithUserDetails;
 
 import com.digows.blank.domain.entity.account.User;
+import com.digows.blank.domain.entity.account.UserRole;
 import com.digows.blank.domain.service.AccountService;
 import com.digows.blank.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
@@ -50,14 +51,14 @@ public class AccountServiceIntegrationTests extends AbstractIntegrationTests
 	})
 	public void insertUserMustPass()
 	{
-//		User user = new User( null, "Testing user", "test@user.com", true, UserRole.USER, "user" ); //TODO
-//		user = this.accountService.insertUser( user );
-//
-//		Assert.assertNotNull( user );
-//		Assert.assertNotNull( user.getId() );
-//		Assert.assertNotNull( user.getCreated() );
-//		Assert.assertTrue( user.getEnabled() );
-//		Assert.assertFalse( user.getPassword().equals( "user" ) );
+		User user = new User( null, "Testing user", "test@user.com", true, UserRole.COORDENADOR, "user" ); //TODO
+		user = this.accountService.insertUser( user );
+
+		Assert.assertNotNull( user );
+		Assert.assertNotNull( user.getId() );
+		Assert.assertNotNull( user.getCreated() );
+		Assert.assertTrue( user.getEnabled() );
+		Assert.assertFalse( user.getPassword().equals( "user" ) );
 	}
 	
 	/**

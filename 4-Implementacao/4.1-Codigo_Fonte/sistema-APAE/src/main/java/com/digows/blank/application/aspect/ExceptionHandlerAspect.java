@@ -74,7 +74,7 @@ public class ExceptionHandlerAspect
 			//Verifica o tipo da exceção
 			if ( annotationType.equals( "javax.validation.constraints.NotNull" ) || annotationType.equals( "org.hibernate.validator.constraints.NotEmpty" ))
 			{
-				message.append("\nThe field " + constraint.getPropertyPath() + " must be set.");//FIXME Localize
+				message.append("\nO campo " + constraint.getPropertyPath() + " é obrigatório.");//FIXME Localize
 			} else
 			{
 				message.append("\n" + constraint.getMessage());

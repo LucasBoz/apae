@@ -5,9 +5,14 @@
 <md-sidenav md-component-id="menuSideNav"
             class="md-sidenav-left md-whiteframe-z2">
 
-    <md-toolbar class="md-tall"
-                style="background-image: url('./static/images/menu-background.png'); background-repeat: round;">
-        <img src="./static/images/logo.png" width="125px" height="125px" alt="Logo"/>
+    <md-toolbar class="md-tall" layout="row">
+        <div>
+            <img src="./static/images/logo.png" width="125px" height="125px" alt="Logo"/>
+        </div>
+        <div>
+            <h1>APAE</h1>
+            <h4>Foz do iguaçu</h4>
+        </div>
     </md-toolbar>
 
     <md-content layout-padding layout="column" layout="left left"
@@ -34,6 +39,12 @@
         <md-button  ui-sref="transporte.list" ng-click="toggleMenuSideNavHandler();">
             <md-icon class="zmdi zmdi-accounts zmdi-hc-fw zmdi-hc-2x"></md-icon>
             Transporte
+        </md-button>
+
+
+        <md-button  ui-sref="funcionario.list" ng-click="toggleMenuSideNavHandler();">
+            <md-icon class="zmdi zmdi-accounts zmdi-hc-fw zmdi-hc-2x"></md-icon>
+            Funcionário
         </md-button>
 
         <md-button ui-sref="cid.list" ng-click="toggleMenuSideNavHandler();">

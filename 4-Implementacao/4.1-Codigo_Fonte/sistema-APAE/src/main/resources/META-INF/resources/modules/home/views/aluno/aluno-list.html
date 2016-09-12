@@ -8,12 +8,8 @@
     <div layout="row">
 
         <div class="md-toolbar-tools">
-            <span>Alunos</span>
+            <span>Funcionários</span>
         </div>
-
-        <md-button class="md-accent md-raised md-hue-1" style="margin-right: 100px" ui-sref="aluno.new">
-            NOVO
-        </md-button>
 
     </div>
 
@@ -21,6 +17,12 @@
 
 
 <md-table-container class="table" style="border: 1px #DDDDDD solid">
+
+    <md-button class="md-fab" aria-label="new" ui-sref="aluno.new"
+               style="position: fixed; margin-left: 1200px;margin-top: -31px; background-color: rgb(255,82,82)">
+        <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
+    </md-button>
+
     <table md-table style="width: 100%">
         <thead md-head class="header-list">
             <tr md-row>

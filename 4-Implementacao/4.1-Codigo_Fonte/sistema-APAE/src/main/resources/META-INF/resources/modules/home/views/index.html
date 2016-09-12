@@ -24,6 +24,7 @@
 		<script type="text/javascript" th:src="@{/modules/home/controllers/cid-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/transporte-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/usuario-controller.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/controllers/funcionario-controller.js}"></script>
 
 	</head>
 		
@@ -31,7 +32,7 @@
 		<ng-include src="'./modules/home/views/menu-sidenav.html'"></ng-include>
 
 		<!-- Header -->
-  		<md-toolbar md-scroll-shrink="">
+  		<md-toolbar md-scroll-shrink="" >
     		<eits-hbox class="md-toolbar-tools" padding-left="20" padding-right="20" vertical-align="center">
     			<md-button class="md-icon-button" aria-label="Menu" 
     				ng-click="toggleMenuSideNavHandler($event)">

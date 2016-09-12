@@ -1,6 +1,25 @@
 /* Theme */
 
 
+/**
+*   SAVE BUTTON
+*/
+.md-button.md-fab.save-button{
+    right: 4%;
+    position: fixed;
+    top: 93px;
+}
+
+/**
+*   FORM
+*/
+
+.eits-paper-sheet-item {
+    min-width: 900px;
+    max-width: 900px;
+}
+
+
 /*
 *   CID
 */
@@ -18,3 +37,5 @@
 .header-list {
     text-align: left;
 }
+
+

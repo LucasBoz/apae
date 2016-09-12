@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import com.digows.blank.domain.entity.funcionario.Cor;
 import com.digows.blank.domain.entity.funcionario.CursosEspecificos;
@@ -123,10 +124,11 @@ public class FuncionarioTests extends AbstractIntegrationTests
 		
 		funcionario.setSexo( Sexo.MASCULINO );
 		
-		funcionario.setTipodeficiencia( TipoDeficiencia.INTELECTUAL );
+		funcionario.setTipoDeficiencia( TipoDeficiencia.INTELECTUAL );
 		
-		funcionarioService.insertFuncionario( funcionario );
+		funcionario = funcionarioService.insertFuncionario( funcionario );
 		
+		funcionarioService.updateFuncionario( funcionario );
 		
 	}
 	
@@ -216,13 +218,58 @@ public class FuncionarioTests extends AbstractIntegrationTests
 		
 		funcionario.setSexo( Sexo.MASCULINO );
 		
-		funcionario.setTipodeficiencia( TipoDeficiencia.INTELECTUAL );
+		funcionario.setTipoDeficiencia( TipoDeficiencia.INTELECTUAL );
 		
 		funcionarioService.insertFuncionario( funcionario );
 		
 		Assert.fail();
 		
 	}
+	
+	
+	
+	@Test
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/pessoa/enderecoDataSet.xml",
+		"/dataset/funcionario/funcionarioDataSet.xml",
+		"/dataset/funcionario/formacaoDataSet.xml",
+
+	})
+	public void updateFuncionarioMustPast() {
+		
+		String novoNome = "Novo nome do funcionario";
+		
+		Funcionario funcionario = this.funcionarioService.findFuncionarioById( 1000L );
+		
+		funcionario.setNome( novoNome );
+				
+		funcionario = this.funcionarioService.updateFuncionario( funcionario );
+		
+		Assert.assertTrue( funcionario.getNome().equals( novoNome) );
+
+	}
+	
+	@Test
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/pessoa/enderecoDataSet.xml",
+		"/dataset/funcionario/funcionarioDataSet.xml",
+		"/dataset/funcionario/formacaoDataSet.xml",
+
+	})
+	public void updateFuncionarioMustFail() {
+		
+		String novoNome = "";
+		
+		Funcionario funcionario = this.funcionarioService.findFuncionarioById( 1000L );
+		
+		funcionario.setNome( novoNome );
+				
+		funcionario = this.funcionarioService.updateFuncionario( funcionario );
+
+		Assert.fail();
+	}
+	
+	
 	
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
@@ -240,6 +287,60 @@ public class FuncionarioTests extends AbstractIntegrationTests
 		Assert.assertTrue( funcionarios.getContent().size() >= 3 );
 
 	}
+	
+	
+	@Test
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/pessoa/enderecoDataSet.xml",
+		"/dataset/funcionario/funcionarioDataSet.xml",
+		"/dataset/funcionario/formacaoDataSet.xml",
+
+	})
+	public void listFuncionarioByFilterNameMustReturn1() {
+		
+		Page<Funcionario> funcionarios = this.funcionarioService.listByFilters( "Lucas", null );
+		
+		Assert.assertTrue( funcionarios.getContent().size() == 1 );
+
+	}
+	
+	
+	@Test
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/pessoa/enderecoDataSet.xml",
+		"/dataset/funcionario/funcionarioDataSet.xml",
+		"/dataset/funcionario/formacaoDataSet.xml",
+
+	})
+	public void listFuncionarioByFilterPageMustReturn1() {
+		
+		PageRequest page = new PageRequest( 0, 1 ) ;
+		
+		Page<Funcionario> funcionarios = this.funcionarioService.listByFilters( null , page );
+		
+		Assert.assertTrue( funcionarios.getContent().size() == 1 );
+
+	}
+	
+	
+	@Test
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+		"/dataset/pessoa/enderecoDataSet.xml",
+		"/dataset/funcionario/funcionarioDataSet.xml",
+		"/dataset/funcionario/formacaoDataSet.xml",
+
+	})
+	public void listFuncionarioByFilterPageMustFail() {
+		
+		PageRequest page = new PageRequest( 0, 2 ) ;
+		
+		Page<Funcionario> funcionarios = this.funcionarioService.listByFilters( null , page );
+		
+		Assert.assertTrue( ! (funcionarios.getContent().size() == 1));
+		
+
+	}
+	
 	
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {

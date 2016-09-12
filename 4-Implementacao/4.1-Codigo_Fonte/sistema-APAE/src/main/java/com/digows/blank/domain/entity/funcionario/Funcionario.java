@@ -22,6 +22,7 @@ import javax.persistence.OneToOne;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
+import org.springframework.util.Assert;
 
 import com.digows.blank.domain.entity.pessoa.Endereco;
 import com.digows.blank.domain.entity.pessoa.Pessoa;
@@ -48,6 +49,10 @@ public class Funcionario extends Pessoa implements Serializable
 
 	@Column(length = 100)
 	private String nomePai;
+	
+
+	@Column(length = 12)
+	private String codigoInep;
 
 	@Column(length = 100)
 	private String nomeMae;
@@ -62,14 +67,11 @@ public class Funcionario extends Pessoa implements Serializable
 	private Escolaridade escolaridade;
 
 	@Column(length = 100)
-	private TipoDeficiencia tipodeficiencia;
+	private TipoDeficiencia tipoDeficiencia;
 
 	@Column(length = 100)
 	private Cor cor;
-	
-//	@OneToMany( cascade= CascadeType.ALL, fetch = FetchType.EAGER)
-//	private Set<FuncionarioCursoEspecifico> funcionarioCursoEspecifico;
-//	
+
 	
     @ElementCollection( targetClass= CursosEspecificos.class, fetch= FetchType.EAGER )
     @CollectionTable(name = "funcionario_curso_especificos", joinColumns = @JoinColumn(name = "funcionario_id"))
@@ -83,9 +85,6 @@ public class Funcionario extends Pessoa implements Serializable
     @Enumerated( EnumType.ORDINAL )
     private Set<Funcao> Funcao = new HashSet<>();
     
-//
-//	@OneToMany( cascade= CascadeType.ALL, fetch = FetchType.EAGER)
-//	private Set<FuncionarioFuncao> funcionarioFuncao;
 	
 	@OneToOne( cascade= CascadeType.ALL, fetch = FetchType.EAGER)
 	private Endereco endereco;
@@ -143,9 +142,9 @@ public class Funcionario extends Pessoa implements Serializable
 	/**
 	 * @return the tipodeficiencia
 	 */
-	public TipoDeficiencia getTipodeficiencia()
+	public TipoDeficiencia getTipoDeficiencia()
 	{
-		return tipodeficiencia;
+		return tipoDeficiencia;
 	}
 
 
@@ -153,9 +152,9 @@ public class Funcionario extends Pessoa implements Serializable
 	/**
 	 * @param tipodeficiencia the tipodeficiencia to set
 	 */
-	public void setTipodeficiencia( TipoDeficiencia tipodeficiencia )
+	public void setTipoDeficiencia( TipoDeficiencia tipoDeficiencia )
 	{
-		this.tipodeficiencia = tipodeficiencia;
+		this.tipoDeficiencia = tipoDeficiencia;
 	}
 
 
@@ -340,11 +339,5 @@ public class Funcionario extends Pessoa implements Serializable
 	}
 
 
-
-
-
-	public Boolean isValid(){
-		return true;
-	}
 
 }

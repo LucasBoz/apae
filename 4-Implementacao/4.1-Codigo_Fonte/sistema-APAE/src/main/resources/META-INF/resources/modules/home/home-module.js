@@ -7,7 +7,7 @@
 	/**
 	 * 
 	 */
-	module.config( function( $stateProvider, $urlRouterProvider, $importServiceProvider, $translateProvider ) {
+	module.config( function( $stateProvider, $urlRouterProvider, $importServiceProvider, $translateProvider, $mdThemingProvider ) {
 		//-------
 		//Broker configuration
 		//-------
@@ -22,10 +22,17 @@
 		//-------
         $urlRouterProvider.otherwise("/");
 
-		//HOME
+		/**
+		 *  HOME
+		 */
 		$stateProvider.state('home', {
-			url: "/",
-			templateUrl: './modules/home/views/home/home-index.html'
+			url: "/aluno",
+			templateUrl: './modules/home/views/aluno/aluno-index.html',
+			controller: 'AlunoController',
+			abstract: true
+
+			// url: "/",
+			// templateUrl: './modules/home/views/home/home-index.html'
 		})
 		/**
 		 * ALUNO
@@ -107,6 +114,43 @@
 		.state('usuario.list', {
 			url: "usuario",
 			templateUrl: './modules/home/views/usuario/usuario-list.html'
+		})
+
+		/**
+		 * FUNCIONARIO
+		 */
+		.state('funcionario', {
+			url: "/funcionario",
+			templateUrl: './modules/home/views/funcionario/funcionario-index.html',
+			controller: 'FuncionarioController',
+			abstract: true
+		})
+		.state('funcionario.list', {
+			url: "/funcionarios",
+			templateUrl: './modules/home/views/funcionario/funcionario-list.html'
+		})
+		.state('funcionario.detail', {
+			url: "/detalhe/{id:[0-9]{1,10}}",
+			templateUrl: './modules/home/views/funcionario/funcionario-detail.html'
+		})
+		.state('funcionario.new', {
+			url: "/novo",
+			templateUrl: './modules/home/views/funcionario/funcionario-new.html'
+		})
+		.state('funcionario.edit', {
+			url: "/editar/{id:[0-9]{1,10}}",
+			templateUrl: './modules/home/views/funcionario/funcionario-edit.html'
+		});
+
+
+
+		$mdThemingProvider.theme('default')
+			.primaryPalette('light-green', {
+				'default': '700'
+			}).accentPalette('yellow', {
+			'default': '900'
+		}).backgroundPalette('blue-grey', {
+			'default': 'A100'
 		});
 
 	});
@@ -126,5 +170,7 @@
 	angular.element(document).ready( function() {
 		angular.bootstrap( document, ['home']);
 	});
+
+
 
 })(window, window.angular);

@@ -11,23 +11,28 @@
 </md-toolbar>
 
 <div>
+
+    <md-button class="md-fab" aria-label="save" ng-click="save(aluno)"
+               style="position: fixed; margin-left: 1200px; margin-top: -31px; background-color: rgb(255,82,82)">
+        <md-icon md-svg-src="/static/icon/save.svg"></md-icon>
+    </md-button>
+
     <div
             style="margin: 20px auto; background-color: white;  padding: 24px; max-width: 850px; box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.25); "
             class="page-container">
 
+
+
         <div class="page">
             <form name="modelForm">
 
-                <md-button class="md-fab" aria-label="save" ng-click="save(aluno)"
-                           style="position: fixed; margin-left: 960px; margin-top: -72px; background-color: rgb(255,82,82)">
 
-                </md-button>
 
                 <div layout="row">
                     <div flex="90" layout-padding="">
                         <md-input-container class="md-block">
-                            <label for="nome">Nome do aluno*</label>
-                            <input type="text" ng-model="aluno.nome" md-maxlength="144" name="nome" id="nome">
+                            <label for="nome">Nome do aluno</label>
+                            <input type="text" required ng-model="aluno.nome" md-maxlength="144" name="nome" id="nome">
                         </md-input-container>
 
 
