@@ -193,39 +193,38 @@
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose:true,
-                    locals: { formacao: formacao }
+                    locals: { formacao: angular.copy(formacao),
+                              popupConfig: {
+                                    title : formacao ? "Editar formação" : "Nova formação",
+                                    buttonConfirm: formacao ? "Editar" : "Salvar"
+                              }
+                    }
                 })
-                .then(function( result) {
-                    if( result.formacao ){
-                        if ( result.isNewFormacao ){
-                            $scope.funcionario.formacoes.push(result.formacao);
-                        }
+                .then(function( result ) {
+
+                    if ( formacao ) {
+                        //editou
+                        $scope.funcionario.formacoes[$scope.funcionario.formacoes.indexOf(formacao)] = result;
+
+                    } else {
+                        $scope.funcionario.formacoes.push( result );
                     }
                 });
 
             };
 
-            function FormacaoDialogController($scope, $mdDialog, formacao) {
+            function FormacaoDialogController($scope, $mdDialog, formacao, popupConfig) {
 
-                $scope.oldFormacao =  angular.copy(formacao);
+                $scope.formacao =  formacao ;
+                $scope.popupConfig  = popupConfig;
 
-                $scope.formacao = formacao;
 
-                $scope.hide = function() {
-                    $mdDialog.hide();
-                };
                 $scope.cancel = function() {
-                    $scope.formacao = $scope.oldFormacao;
                     $mdDialog.cancel();
                 };
+
                 $scope.answer = function( formacao ) {
-
-                    var result = {
-                        formacao : formacao,
-                        isNewFormacao: !$scope.oldFormacao
-                    };
-
-                    $mdDialog.hide( result )
+                    $mdDialog.hide( formacao )
                 };
 
             }

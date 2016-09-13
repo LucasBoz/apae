@@ -143,14 +143,36 @@
 		});
 
 
+		/**
+		 * THEME
+		 */
+
+		var customBackground = {
+			'50': '#ffffff', // Button color
+			'100': '#ff6400',
+			'200': '#003d31',
+			'300': '#388E3C', // Header and Selection DatePicker
+			'400': '#666666',
+			'500': 'f1f1f1',  // background Color
+			'600': '#e65a00',
+			'700': '#cc5000',
+			'800': '#b34600',
+			'900': '#000000',  // background Dialog
+			'A100': '#ffffff', // background DatePicker
+			'A200': '#000000', // Text color DatePicker
+			'A400': '#00896f',
+			'A700': '#23ffd4'
+		};
+		$mdThemingProvider
+			.definePalette('customBackground', customBackground);
 
 		$mdThemingProvider.theme('default')
-			.primaryPalette('light-green', {
+			.primaryPalette('green', {
 				'default': '700'
 			}).accentPalette('yellow', {
 			'default': '900'
-		}).backgroundPalette('blue-grey', {
-			'default': 'A100'
+		}).backgroundPalette('customBackground', {
+			'default': '500'
 		});
 
 	});

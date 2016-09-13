@@ -5,8 +5,15 @@
     <div layout="row">
 
         <div class="md-toolbar-tools">
-            <span ng-if="!funcionario.id">Novo funcionario</span>
-            <span ng-if="funcionario.id">Editar funcionario</span>
+
+            <md-button aria-label="Voltar"
+                       class="md-icon-button launch"
+                       ui-sref="funcionario.list">
+                <md-icon md-svg-src="/static/icon/arrow-left2.svg"></md-icon>
+            </md-button>
+
+            <span ng-if="!funcionario.id">Novo funcionário</span>
+            <span ng-if="funcionario.id">Editar funcionário</span>
         </div>
     </div>
 
@@ -18,13 +25,16 @@
     <div layout-align="center center" class="eits-content">
 
 
+
+
         <md-button aria-label="Editar funcionário"
                    class="md-fab save-button"
                    ng-click="save(funcionario)">
             <md-icon md-svg-src="/static/icon/save.svg"></md-icon>
         </md-button>
 
-        <form name="modelForm" novalidate >
+        <form name="modelForm" novalidate>
+
 
             <div class="eits-paper-sheet-item" >
                 <div class="paper-sheet-closed">
@@ -157,7 +167,7 @@
                                 </div>
 
                                 <div layout-padding>
-                                    <md-radio-button value="PRETA">Preto</md-radio-button>
+                                    <md-radio-button value="PRETA">Preta</md-radio-button>
                                     <md-radio-button value="INDIGENA"> Indígena </md-radio-button>
 
                                 </div>
@@ -287,17 +297,30 @@
 
                 <content-opened>
 
-
-                    <md-button class="md-accent md-raised md-hue-1"  ng-click="formacaoDialog($event)">
-                        NOVO
+                    <md-button class="md-accent md-raised md-hue-1"  ng-click="formacaoDialog($event)" style="position: absolute ;right: 40px; top: 10px;">
+                        NOVA FORMAÇÃO
                     </md-button>
 
                     <div ng-repeat="formacao in funcionario.formacoes">
 
-                        <div ng-click="formacaoDialog($event, formacao)">
-                            {{formacao | json}}
+                        <div ng-click="formacaoDialog($event, formacao)" layout="column">
+
+                            <div>
+                                <span ng-if="formacao.area"> Área: <b> {{formacao.area}} </b></span>
+                                <span ng-if="formacao.codigo"> Código:  <b>{{formacao.codigo}} </b></span>
+                                <span ng-if="formacao.anoInicio"> Ano início:  <b>{{formacao.anoInicio}} </b></span>
+                                <span ng-if="formacao.anoConclusao"> Ano conclusão:  <b>{{formacao.anoConclusao}} </b></span>
+                            </div>
+
+                            <span ng-if="formacao.nomeInstituicao"> Nome da instituição:  <b>{{formacao.nomeInstituicao}} </b></span>
+
+                            <md-divider></md-divider>
+
                         </div>
 
+                    </div>
+                    <div ng-if="!funcionario.formacoes.length">
+                        <h3> Nenhuma formação cadastrada </h3>
                     </div>
 
                 </content-opened>
