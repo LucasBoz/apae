@@ -111,7 +111,6 @@ public class Aluno extends Pessoa implements Serializable
 	 * 
 	 * @param id
 	 * @param name
-	 * @param email
 	 * @param enabled
 	 */
 

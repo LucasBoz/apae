@@ -224,6 +224,9 @@
                 };
 
                 $scope.answer = function( formacao ) {
+
+                    var formacaoForm = angular.element( document.querySelector('#formacaoForm') ).scope()['formacaoForm'];
+
                     $mdDialog.hide( formacao )
                 };
 

@@ -45,6 +45,15 @@ public class AccountMailRepository implements IAccountMailRepository
      */
 	@Value("${spring.mail.from}")
 	private String mailFrom;
+	/* (non-Javadoc)
+	 * @see com.digows.blank.domain.repository.IAccountMailRepository#sendNewUserAccount(com.digows.blank.domain.entity.account.User)
+	 */
+	@Override
+	public Future<Void> sendNewUserAccount( User user )
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	/*-------------------------------------------------------------------
 	 *                          BEHAVIORS
@@ -53,36 +62,4 @@ public class AccountMailRepository implements IAccountMailRepository
 	 *
 	 * @param user
 	 */
-	@Async
-	@Override
-	public Future<Void> sendNewUserAccount( final User user )
-	{
-		final MimeMessagePreparator preparator = new MimeMessagePreparator()
-		{
-			public void prepare( MimeMessage mimeMessage ) throws Exception
-			{
-				final String title = "[xova] Seja Bem Vindo!";
-				final String logo = "logo-large.png";
-				
-				final MimeMessageHelper message = new MimeMessageHelper( mimeMessage, true, "UTF-8" );
-				message.setSubject( title );
-				message.setTo( user.getEmail() );
-				message.setFrom( mailFrom );
-
-				final Context context = new Context();
-				context.setVariable("title", title);
-				context.setVariable("logo", logo);
-				context.setVariable("uzer", user);
-				
-				final String content = templateEngine.process( "mail/new-account", context );
-				message.setText( content, true );
-				
-				// Add the inline image, referenced from the HTML code as "cid:${logo}"
-				message.addInline( logo, new ClassPathResource("META-INF/resources/static/images/logo-large.png"));
-			}
-		};
-
-		this.mailSender.send( preparator );
-		return new AsyncResult<Void>( null );
-	}
 }

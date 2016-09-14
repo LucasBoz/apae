@@ -34,7 +34,7 @@ CREATE TABLE auditing.user_audited
   id bigint NOT NULL,
   revision bigint NOT NULL,
   revision_type smallint,
-  email character varying(144),
+  login character varying(144),
   enabled boolean,
   last_login timestamp without time zone,
   name character varying(50),
@@ -59,19 +59,19 @@ CREATE TABLE "public"."user"
   id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
-  email character varying(144) NOT NULL,
+  login character varying(144) NOT NULL,
   enabled boolean NOT NULL,
   name character varying(50) NOT NULL,
   password character varying(100) NOT NULL,
   role integer NOT NULL,
   last_login timestamp without time zone,
   CONSTRAINT user_pkey PRIMARY KEY (id),
-  CONSTRAINT uk_user_email UNIQUE (email)
+  CONSTRAINT uk_user_login UNIQUE (login)
 );
 
 ----------------------- 
 -- DEFAULT DATA
 -----------------------
 INSERT INTO "public"."user"(
-            id, created, updated, email, enabled, name, password, role)
+            id, created, updated, login, enabled, name, password, role)
     VALUES (1, NOW(), null, 'admin@admin.com', TRUE, 'Administrador de Sistemas', 'd1bd2f08fead38a982aed9d4ca060152400b1b8f', 0);

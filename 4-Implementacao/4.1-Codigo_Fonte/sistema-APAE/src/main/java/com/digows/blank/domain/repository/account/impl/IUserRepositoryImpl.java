@@ -39,21 +39,21 @@ public class IUserRepositoryImpl implements UserDetailsService
 	 */
 	@Override
 	@Transactional
-	public UserDetails loadUserByUsername( String email ) throws UsernameNotFoundException
+	public UserDetails loadUserByUsername( String login ) throws UsernameNotFoundException
 	{
 		try
 		{
 			final String hql = "FROM User user "
-							+ "WHERE user.email = :email";
+							+ "WHERE user.login = :login";
 			
 			final TypedQuery<User> query = this.entityManager.createQuery( hql, User.class );
-			query.setParameter("email", email);
+			query.setParameter("login", login);
 			
 			return query.getSingleResult();
 		}
 		catch (NoResultException e)
 		{
-			throw new UsernameNotFoundException("This email '"+email+"' was not found");
+			throw new UsernameNotFoundException("This login '"+login+"' was not found");
 		}
 	}
 }

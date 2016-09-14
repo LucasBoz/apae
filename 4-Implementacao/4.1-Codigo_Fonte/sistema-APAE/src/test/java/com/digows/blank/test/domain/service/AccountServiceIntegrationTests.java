@@ -75,7 +75,7 @@ public class AccountServiceIntegrationTests extends AbstractIntegrationTests
 		Assert.assertNotNull( user );
 		Assert.assertNotNull( user.getId() );
 		Assert.assertNotNull( user.getCreated() );
-		Assert.assertEquals( "admin@email.com", user.getEmail() );
+		Assert.assertEquals( "admin@email.com", user.getLogin() );
 	}
 	
 	/**

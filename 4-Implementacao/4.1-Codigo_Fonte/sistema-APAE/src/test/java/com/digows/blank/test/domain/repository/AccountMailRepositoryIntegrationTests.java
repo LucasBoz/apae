@@ -40,7 +40,7 @@ public class AccountMailRepositoryIntegrationTests extends AbstractIntegrationTe
 	public void sendNewUserAccountTestMustPass() throws InterruptedException, ExecutionException
 	{
 		final User user = new User();
-		user.setEmail( "eits@mailinator.com" );
+		user.setLogin( "testeLogin@mailinator.com" );
 		user.setName( "Suporte da eits" );
 
 		final Future<Void> emailSent = this.accountMailRepository.sendNewUserAccount( user );

@@ -21,6 +21,23 @@
                             <input name="nome" type="text" ng-model="user.name">
                         </md-input-container>
 
+                        <md-input-container width="400" class="md-block">
+                            <label>Login</label>
+                            <input name="nome" type="text" ng-model="user.login">
+                        </md-input-container>
+
+                        <md-input-container width="400" class="md-block">
+                            <label>Senha</label>
+                            <input name="nome" type="text" ng-model="user.password">
+                        </md-input-container>
+
+                        <p>Perfil</p>
+                        <md-radio-group ng-model="user.role">
+                            <md-radio-button value="COORDENADOR">Coordenador</md-radio-button>
+                            <md-radio-button value="SECRETARIA"> SECRETARIA </md-radio-button>
+                            <md-radio-button value="TECNICO"> TECNICO </md-radio-button>
+                        </md-radio-group>
+
                     </div>
                 </form>
 

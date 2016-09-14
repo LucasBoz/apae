@@ -141,7 +141,7 @@ public class Application extends SpringBootServletInitializer
 						.authenticated()
 						.and()
 							.formLogin()
-								.usernameParameter( "email" )
+								.usernameParameter( "login" )
 								.loginPage( "/authentication" )
 								.loginProcessingUrl( "/authenticate" )
 								.failureHandler( this.authenticationFailureHandler() )

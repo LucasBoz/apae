@@ -1,22 +1,27 @@
+
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org"
       xmlns:th="http://www.thymeleaf.org" lang="pt">
 
 
 <form>
-    <eits-hbox>
+    <div layout="row">
         <md-input-container width="300" class="md-block">
-            <label>Filtro de Funcionarios</label>
+            <label>Pesquisar</label>
             <input ng-model="model.query.filter.name">
         </md-input-container>
-        <md-button class="md-raised md-hue-1" type="submit" style="height: 40px;" ng-click="listFuncionariosByFilters( model.query.filter.name )"> Filtrar </md-button>
-    </eits-hbox>
+
+        <md-button aria-label="Pesquisar funcionário"
+                   ng-click="listFuncionariosByFilters( model.query.filter.name )"
+                   class="md-raised md-icon-button">
+            <md-icon md-svg-src="/static/icon/search.svg"></md-icon>
+        </md-button>
+
+    </div>
 </form>
 
 
-
-
-<md-table-container class="table" style="border: 1px #DDDDDD solid">
+<md-table-container class="table">
 
     <md-button aria-label="Novo funcionário"
                class="md-fab save-button"
@@ -28,9 +33,9 @@
         <thead md-head >
         <tr md-row>
             <th md-column style="width: 40%" ><span>Nome</span></th>
-            <th md-column style="width: 30%"><span>Email</span></th>
+            <th md-column style="width: 40%"><span>Email</span></th>
             <th md-column style="width: 10%">Telefone</th>
-            <th md-column style="width: 20%">Ações</th>
+            <th md-column style="width: 10%">Ações</th>
         </tr>
         </thead>
         <tbody md-body>
@@ -39,7 +44,7 @@
             <td md-cell>{{funcionario.email}}</td>
             <td md-cell>{{funcionario.telefone}}</td>
             <td md-cell>
-                <md-button ng-click="removeFuncionario($event, funcionario)" aria-label="remove" class="md-raised table-button">
+                <md-button ng-click="removeFuncionario($event, funcionario)" aria-label="remove" class="md-icon-button">
                     <md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
                 </md-button>
             </td>
@@ -51,3 +56,5 @@
 <md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"  md-on-paginate="getDesserts" md-page-select></md-table-pagination>
 
 </html>
+
+

@@ -17,7 +17,7 @@ angular.module('authentication')
       */
      $scope.model = {
 		 entity: {
-			 email : "admin@admin.com",
+			 login : "admin@admin.com",
 		 	password : "admin"
 		 }
 	 };
@@ -41,7 +41,7 @@ angular.module('authentication')
 			
 			$http.post( "./authenticate", $.param($scope.model.entity), config)
 				.success( function( data, status, headers, config ) {
-					$window.location.href = "./";
+					$window.location.href = "/";
 				})
 				.error( function( data, status, headers, config ){
 					$mdToast.showSimple( (data && data.message) ? data.message : data );

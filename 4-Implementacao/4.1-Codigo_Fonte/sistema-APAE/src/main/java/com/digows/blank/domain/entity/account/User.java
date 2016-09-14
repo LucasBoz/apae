@@ -17,7 +17,6 @@ import javax.validation.constraints.NotNull;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -56,10 +55,10 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	/**
 	 * 
 	 */
-	@Email
+
 	@NotNull
 	@Column(nullable = false, length = 144, unique = true)
-	private String email;
+	private String login;
 	/**
 	 * 
 	 */
@@ -109,13 +108,13 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	 * 
 	 * @param id
 	 * @param name
-	 * @param email
+	 * @param login
 	 * @param enabled
 	 */
-	public User( Long id, String name, String email, Boolean enabled )
+	public User( Long id, String name, String login, Boolean enabled )
 	{
 		super( id );
-		this.email = email;
+		this.login = login;
 		this.name = name;
 		this.enabled = enabled;
 	}
@@ -124,14 +123,14 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	 * 
 	 * @param id
 	 * @param name
-	 * @param email
+	 * @param login
 	 * @param enabled
 	 * @param role
 	 */
-	public User( Long id, String name, String email, Boolean enabled, UserRole role )
+	public User( Long id, String name, String login, Boolean enabled, UserRole role )
 	{
 		super( id );
-		this.email = email;
+		this.login = login;
 		this.name = name;
 		this.enabled = enabled;
 		this.role = role;
@@ -141,15 +140,15 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	 * 
 	 * @param id
 	 * @param name
-	 * @param email
+	 * @param login
 	 * @param enabled
 	 * @param role
 	 * @param password
 	 */
-	public User( Long id, String name, String email, Boolean enabled, UserRole role, String password )
+	public User( Long id, String name, String login, Boolean enabled, UserRole role, String password )
 	{
 		super( id );
-		this.email = email;
+		this.login = login;
 		this.name = name;
 		this.enabled = enabled;
 		this.password = password;
@@ -246,7 +245,7 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	@Transient
 	public String getUsername()
 	{
-		return this.email;
+		return this.login;
 	}
 	
 	/* (non-Javadoc)
@@ -257,7 +256,7 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	{
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ( ( email == null ) ? 0 : email.hashCode() );
+		result = prime * result + ( ( login == null ) ? 0 : login.hashCode() );
 		result = prime * result + ( ( enabled == null ) ? 0 : enabled.hashCode() );
 		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
 		result = prime * result + ( ( password == null ) ? 0 : password.hashCode() );
@@ -275,11 +274,11 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
 		User other = ( User ) obj;
-		if ( email == null )
+		if ( login == null )
 		{
-			if ( other.email != null ) return false;
+			if ( other.login != null ) return false;
 		}
-		else if ( !email.equals( other.email ) ) return false;
+		else if ( !login.equals( other.login ) ) return false;
 		if ( enabled == null )
 		{
 			if ( other.enabled != null ) return false;
@@ -320,20 +319,20 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	}
 
 	/**
-	 * @return the email
+	 * @return the login
 	 */
-	public String getEmail()
+	public String getLogin()
 	{
-		return email;
+		return login;
 	}
 
 	/**
-	 * @param email
-	 *            the email to set
+	 * @param login
+	 *            the login to set
 	 */
-	public void setEmail( String email )
+	public void setLogin( String login )
 	{
-		this.email = email;
+		this.login = login;
 	}
 
 	/**
