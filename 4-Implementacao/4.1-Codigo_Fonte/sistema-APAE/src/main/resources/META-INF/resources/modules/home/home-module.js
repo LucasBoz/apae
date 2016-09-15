@@ -7,7 +7,18 @@
 	/**
 	 * 
 	 */
-	module.config( function( $stateProvider, $urlRouterProvider, $importServiceProvider, $translateProvider, $mdThemingProvider ) {
+	module.config(
+		function( $stateProvider, $urlRouterProvider, $importServiceProvider, $translateProvider, $mdThemingProvider, $mdDateLocaleProvider ) {
+
+		/**
+		 * MOMENT
+		 */
+		$mdDateLocaleProvider.formatDate = function(date) {
+			var m = moment(date);
+			return m.isValid() ? m.format('L') : '';
+		};
+
+
 		/**
 		 *  HOME
 		 */

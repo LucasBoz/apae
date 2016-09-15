@@ -16,6 +16,12 @@
 		
 		<!-- Module --> 
 		<script type="text/javascript" th:src="@{/modules/home/home-module.js}"></script>
+
+
+		<!-- moment.js -->
+		<script type="text/javascript" th:src="@{/webjars/momentjs/moment.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/momentjs/locales.min.js}"></script>
+		<script>moment.locale(navigator.language.toLowerCase());</script>
 		
 		<!-- Controllers -->
 		<script type="text/javascript" th:src="@{/modules/home/controllers/home-controller.js}"></script>
