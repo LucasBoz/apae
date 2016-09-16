@@ -1,0 +1,45 @@
+<md-dialog aria-label=formacao" ng-cloak style="min-width: 450px ">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Irmao</h2>
+
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form name="irmaoForm" id="irmaoForm" >
+
+                    <div layout="row">
+                        <md-input-container flex="60">
+                            <label>Nome</label>
+                            <input ng-model="irmao.nome" name="login" type="text" md-maxlength="12">
+                        </md-input-container>
+
+                        <div flex>
+                            <label>Data de nascimento</label>
+                            <md-datepicker ng-model="irmao.dataNascimento" placeholder="Data de nascimento"></md-datepicker>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                Cancelar
+            </md-button>
+            <md-button ng-click="answer(irmao)">
+               Salvar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

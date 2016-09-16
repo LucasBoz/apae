@@ -64,7 +64,7 @@ public class FuncionarioTests extends AbstractIntegrationTests
 		
 //		Formação
 		funcionario.setFormacoes(  new ArrayList<Formacao>() );
-		
+	
 		Formacao formacao = new Formacao();
 
 		formacao.setAnoConclusao( 2017 );
@@ -78,24 +78,14 @@ public class FuncionarioTests extends AbstractIntegrationTests
 
 		funcionario.getFormacoes().add( formacao );
 		
-//		Cursos especificos
-//		funcionario.setFuncionarioCursoEspecifico( new HashSet<FuncionarioCursoEspecifico>() );
-//		funcionario.getFuncionarioCursoEspecifico().add( new FuncionarioCursoEspecifico(funcionario, CursosEspecificos.CRECHE) );
-//		funcionario.getFuncionarioCursoEspecifico().add( new FuncionarioCursoEspecifico(funcionario, CursosEspecificos.ANOS_FINAIS_ENSINO_FUNDAMENTAL) );
-//		funcionario.getFuncionarioCursoEspecifico().add( new FuncionarioCursoEspecifico(funcionario, CursosEspecificos.EDUCACAO_INDIGENA) );
-		
+//		Cursos especificos		
 		funcionario.setCursosEspecificos( new HashSet<CursosEspecificos>() );
 		funcionario.getCursosEspecificos().add( CursosEspecificos.ANOS_FINAIS_ENSINO_FUNDAMENTAL );
 		funcionario.getCursosEspecificos().add( CursosEspecificos.EDUCACAO_INDIGENA );
 		funcionario.getCursosEspecificos().add( CursosEspecificos.CRECHE);
 				
 		
-//		Funcao
-//		funcionario.setFuncionarioFuncao( new HashSet<FuncionarioFuncao>() );
-//		funcionario.getFuncionarioFuncao().add( new FuncionarioFuncao(funcionario, Funcao.AUXILIAR_EDICACIONAL) );
-//		funcionario.getFuncionarioFuncao().add( new FuncionarioFuncao(funcionario, Funcao.DOCENTE) );
-//		funcionario.getFuncionarioFuncao().add( new FuncionarioFuncao(funcionario, Funcao.TRADUTOR_INTERPRETE_LIBRAS) );
-		
+//		Funcao	
 		funcionario.setFuncao( new HashSet<Funcao>() );
 		funcionario.getFuncao().add( Funcao.DOCENTE_TITULAR );
 		funcionario.getFuncao().add( Funcao.AUXILIAR_EDUCACIONAL );
@@ -172,24 +162,14 @@ public class FuncionarioTests extends AbstractIntegrationTests
 
 		funcionario.getFormacoes().add( formacao );
 		
-//		Cursos especificos
-//		funcionario.setFuncionarioCursoEspecifico( new HashSet<FuncionarioCursoEspecifico>() );
-//		funcionario.getFuncionarioCursoEspecifico().add( new FuncionarioCursoEspecifico(funcionario, CursosEspecificos.CRECHE) );
-//		funcionario.getFuncionarioCursoEspecifico().add( new FuncionarioCursoEspecifico(funcionario, CursosEspecificos.ANOS_FINAIS_ENSINO_FUNDAMENTAL) );
-//		funcionario.getFuncionarioCursoEspecifico().add( new FuncionarioCursoEspecifico(funcionario, CursosEspecificos.EDUCACAO_INDIGENA) );
-		
+//		Cursos especificos		
 		funcionario.setCursosEspecificos( new HashSet<CursosEspecificos>() );
 		funcionario.getCursosEspecificos().add( CursosEspecificos.ANOS_FINAIS_ENSINO_FUNDAMENTAL );
 		funcionario.getCursosEspecificos().add( CursosEspecificos.EDUCACAO_INDIGENA );
 		funcionario.getCursosEspecificos().add( CursosEspecificos.CRECHE);
 				
 		
-//		Funcao
-//		funcionario.setFuncionarioFuncao( new HashSet<FuncionarioFuncao>() );
-//		funcionario.getFuncionarioFuncao().add( new FuncionarioFuncao(funcionario, Funcao.AUXILIAR_EDICACIONAL) );
-//		funcionario.getFuncionarioFuncao().add( new FuncionarioFuncao(funcionario, Funcao.DOCENTE) );
-//		funcionario.getFuncionarioFuncao().add( new FuncionarioFuncao(funcionario, Funcao.TRADUTOR_INTERPRETE_LIBRAS) );
-		
+//		Funcao		
 		funcionario.setFuncao( new HashSet<Funcao>() );
 		funcionario.getFuncao().add( Funcao.DOCENTE_TITULAR );
 		funcionario.getFuncao().add( Funcao.AUXILIAR_EDUCACIONAL );

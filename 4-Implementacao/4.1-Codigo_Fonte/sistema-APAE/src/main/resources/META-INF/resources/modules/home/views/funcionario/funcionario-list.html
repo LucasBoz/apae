@@ -1,11 +1,17 @@
-
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org"
       xmlns:th="http://www.thymeleaf.org" lang="pt">
 
 
+<md-toolbar class="md-table-toolbar md-primary">
+        <div class="md-toolbar-tools">
+            <span>Funcionários</span>
+        </div>
+</md-toolbar>
+
 <form>
     <div layout="row">
+
         <md-input-container width="300" class="md-block">
             <label>Pesquisar</label>
             <input ng-model="model.query.filter.name">
@@ -16,18 +22,17 @@
                    class="md-raised md-icon-button">
             <md-icon md-svg-src="/static/icon/search.svg"></md-icon>
         </md-button>
-
     </div>
 </form>
 
 
-<md-table-container class="table">
+<md-button aria-label="Novo funcionário"
+           class="md-fab save-button"
+           ui-sref="funcionario.new">
+    <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
+</md-button>
 
-    <md-button aria-label="Novo funcionário"
-               class="md-fab save-button"
-               ui-sref="funcionario.new">
-        <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
-    </md-button>
+<md-table-container class="table">
 
     <table md-table>
         <thead md-head >

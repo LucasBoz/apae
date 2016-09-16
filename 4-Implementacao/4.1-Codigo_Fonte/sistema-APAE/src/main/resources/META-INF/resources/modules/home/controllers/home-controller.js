@@ -34,7 +34,6 @@
              *
              */
             $scope.toggleMenuSideNavHandler = function () {
-                console.log("toggleMenuSideNavHandler");
                 $mdSidenav($scope.menuSideNavId).toggle();
             };
 

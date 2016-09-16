@@ -5,6 +5,7 @@ package com.digows.blank.domain.entity.responsavel;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -38,7 +39,7 @@ public class Familiar extends AbstractEntity implements Serializable
 	@ManyToOne
 	private Aluno aluno;
 	
-	
+	@Column(length=10)
 	private TipoResponsavel tipoResponsavel;
 
 

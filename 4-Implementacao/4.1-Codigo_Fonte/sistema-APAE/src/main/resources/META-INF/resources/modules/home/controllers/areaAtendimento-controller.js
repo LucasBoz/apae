@@ -8,9 +8,9 @@
      *
      */
     angular.module('home')
-        .controller('ResponsavelController', function( $rootScope, $scope, $state, $importService, $mdToast, $mdDialog ) {
+        .controller('AreaAtendimentoController', function( $rootScope, $scope, $state, $importService, $mdToast, $mdDialog ) {
 
-            $importService("responsavelService");
+            $importService("areaAtendimentoService");
 
             $scope.model = {
                 query : {
@@ -37,40 +37,42 @@
             ];
 
 
-            $scope.listResponsaveis = function () {
-                responsavelService.listResponsavelByFilters ( null, null, {
+            $scope.listAreaAtendimento = function () {
+                areaAtendimentoService.listAreaAtendimentosByFilters ( null, null, {
                     callback: function ( result ) {
 
                         $scope.model.pageRequest.content = result.content;
 
                         if( !$scope.model.pageRequest.content.length){
-                            $rootScope.toast("Nenhum responsável encontrado");
+                            $rootScope.toast("Nenhuma área de atendimento encontrado");
                         }
+
                     }, errorHandler: function ( message, exception ) {
                         $rootScope.toast(message);
+
                     }
                 })
             };
 
-            $scope.removeResponsavel = function (ev, responsavel) {
+            $scope.remove = function (ev, areaAtendimento) {
 
                 var confirm = $mdDialog.confirm()
-                    .title('Excluir responsável')
-                    .content("Você realmente deseja excluir o responsável " + responsavel.nome + "?")
+                    .title('Excluir areaAtendimento')
+                    .content("Você realmente deseja excluir " + areaAtendimento.nome + "?")
                     .targetEvent(ev)
                     .ok('Excluir')
                     .cancel('Cancelar');
                 $mdDialog.show(confirm).then(function () {
 
-                    responsavelService.removeResponsavel ( responsavel.id, {
+                    areaAtendimentoService.removeAreaAtendimento ( areaAtendimento.id, {
                         callback: function ( result ) {
 
-                            $rootScope.toast("Responsável removido com sucesso");
+                            $scope.model.pageRequest.content.splice(  $scope.model.pageRequest.content.indexOf(areaAtendimento), 1 );
 
-                            $scope.model.pageRequest.content.splice(  $scope.model.pageRequest.content.indexOf(responsavel), 1 );
-
+                            $scope.toast("Area de Atendimento excluido com sucesso");
 
                         }, errorHandler: function ( message, exception ) {
+
                             $rootScope.toast(message);
 
                         }
@@ -79,60 +81,69 @@
                 });
 
 
-
             };
 
-            $scope.changeToEdit = function (ev, responsavel) {
+            
+            
+            $scope.changeToEdit = function (ev, areaAtendimento) {
                 
                 $mdDialog.show({
-                        controller: ResponsavelDialogController,
-                        templateUrl: 'modules/home/views/responsavel/responsavel-dialog/responsavel-dialog.html',
+                        controller: AreaAtendimentoDialogController,
+                        templateUrl: 'modules/home/views/areaAtendimento/areaAtendimento-dialog/areaAtendimento-dialog.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         clickOutsideToClose:true,
-                        locals: {responsavel: responsavel, content: $scope.model.pageRequest.content}
+                        locals: {areaAtendimento: angular.copy(areaAtendimento) }
                     })
                     .then(function(answer) {
+
+                        var idx = $scope.model.pageRequest.content.indexOf(areaAtendimento);
+
+                        if( idx > -1 ){
+
+                            //editou
+                            $scope.model.pageRequest.content[idx] = answer;
+
+                        } else {
+                            //Novo dado
+                            $scope.model.pageRequest.content.unshift( answer );
+
+                        }
 
                     });
           
             };
 
-            function ResponsavelDialogController($scope, $mdDialog, responsavel, content) {
+            function AreaAtendimentoDialogController($scope, $mdDialog, areaAtendimento) {
 
-                $scope.oldResponsavel = responsavel;
+                $scope.areaAtendimento = areaAtendimento;
 
-                $scope.responsavel =  angular.copy(responsavel);
+                $scope.model = {};
 
-                $scope.content = content;
+                $scope.save = function( areaAtendimento ){
 
-                $scope.save = function( responsavel ){
+                    if (!areaAtendimento.id) {
 
-                    if (!responsavel.id) {
-
-                        responsavelService.insertResponsavel(responsavel, {
+                        areaAtendimentoService.insertAreaAtendimento(areaAtendimento, {
                             callback: function (result) {
 
-                                $rootScope.toast("Responsável inserido com sucesso");
+                                $rootScope.toast("Área de Atendimento inserido com sucesso");
 
-                                $scope.content.push( result );
-
-                                $mdDialog.hide();
+                                $mdDialog.hide(result);
 
                             }, errorHandler: function (message, exception) {
+
                                 $rootScope.toast(message);
+
                             }
                         })
                     } else {
-                        responsavelService.updateResponsavel(responsavel, {
+                        areaAtendimentoService.updateAreaAtendimento(areaAtendimento, {
                             callback: function (result) {
 
-                                $rootScope.toast("Responsável atualizado com sucesso");
+                                $rootScope.toast("Area de Atendimento atualizado com sucesso");
 
-                                //Atualiza o responsavel da listagem
-                                $scope.content[$scope.content.indexOf($scope.oldResponsavel)] = result;
-
-                                $mdDialog.hide();
+                                $mdDialog.hide(result);
 
                             }, errorHandler: function (message, exception) {
                                 $rootScope.toast(message);
@@ -148,8 +159,10 @@
                 $scope.cancel = function() {
                     $mdDialog.cancel();
                 };
-                $scope.answer = function( responsavel ) {
-                    $scope.save(responsavel);
+                $scope.answer = function( areaAtendimento ) {
+
+                    $scope.save(areaAtendimento);
+
                 };
 
 
@@ -158,7 +171,7 @@
             //
 
 
-            $scope.listResponsaveis();
+            $scope.listAreaAtendimento();
 
         });
 

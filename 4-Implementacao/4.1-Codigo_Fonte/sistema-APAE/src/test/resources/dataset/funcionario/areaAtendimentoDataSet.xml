@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+	<public.areaAtendimento
+		id="1000"
+		created="2015-03-30 00:00:00"
+		nome="teste 1"
+		
+	/>
+	<public.areaAtendimento
+		id="1001"
+		created="2015-03-30 00:00:00"
+		nome="teste 2"
+		
+	/>
+		<public.areaAtendimento
+		id="1002"
+		created="2015-03-30 00:00:00"
+		nome="teste 3"
+		
+	/>
+</dataset>

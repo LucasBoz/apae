@@ -16,9 +16,9 @@
         </div>
     </md-toolbar>
 
-    <md-content layout-padding layout="column" layout="left left"
+    <md-content layout="column" layout="left left"
                 class="menu-left"
-                style="height: 80%; padding-top: 20px;">
+                style="height: 80%;">
 
         <label class="md-body-2">MENU</label>
 
@@ -51,6 +51,11 @@
         <md-button ui-sref="cid.list" ng-click="toggleMenuSideNavHandler();">
             <md-icon class="zmdi zmdi-accounts zmdi-hc-fw zmdi-hc-2x"></md-icon>
             CID10
+        </md-button>
+
+        <md-button ui-sref="areaAtendimento.list" ng-click="toggleMenuSideNavHandler();">
+            <md-icon class="zmdi zmdi-accounts zmdi-hc-fw zmdi-hc-2x"></md-icon>
+            Área de atendimento
         </md-button>
 
         <md-divider></md-divider>

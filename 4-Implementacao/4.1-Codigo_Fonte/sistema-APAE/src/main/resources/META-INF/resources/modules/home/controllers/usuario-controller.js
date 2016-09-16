@@ -45,7 +45,6 @@
 
                     }, errorHandler: function ( message, exception ) {
                         $rootScope.toast(message);
-                        console.log("DEBUG");
                     }
                 })
             };

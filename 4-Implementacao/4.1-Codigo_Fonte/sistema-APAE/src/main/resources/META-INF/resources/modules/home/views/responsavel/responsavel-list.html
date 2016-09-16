@@ -11,8 +11,10 @@
             <span>Responsáveis</span>
         </div>
 
-        <md-button class="md-accent md-raised md-hue-1" style="margin-right: 100px" ng-click="changeToEdit($event)">
-            NOVO
+        <md-button aria-label="Nova area de atendimento"
+                   class="md-fab save-button"
+                   ng-click="changeToEdit($event)">
+            <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
         </md-button>
 
     </div>

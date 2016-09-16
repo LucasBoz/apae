@@ -68,6 +68,22 @@
                     })
                     .then(function(answer) {
 
+                        if(answer){
+
+                            var idx = $scope.model.pageRequest.content.indexOf(cid);
+
+                            if( idx > -1 ){
+
+                                //editou
+                                $scope.model.pageRequest.content[idx] = answer;
+
+                            } else {
+                                //Novo dado
+                                $scope.model.pageRequest.content.push( answer );
+
+                            }
+                        }
+
                     });
           
             };
@@ -83,6 +99,8 @@
 
                             $rootScope.toast("CID atualizado com sucesso");
 
+                            $mdDialog.hide(result);
+
                         }, errorHandler: function (message, exception) {
                             console.log(exception);
                         }
@@ -97,7 +115,7 @@
                     $mdDialog.cancel();
                 };
                 $scope.answer = function( responsavel ) {
-                    $mdDialog.hide();
+
                     $scope.save(responsavel);
                 };
 

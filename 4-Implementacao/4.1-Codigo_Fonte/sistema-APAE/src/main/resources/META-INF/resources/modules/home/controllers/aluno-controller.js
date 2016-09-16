@@ -19,7 +19,11 @@
 
             $scope.alunos = [];
 
-            
+            $scope.aluno = {
+                responsaveis: [],
+                irmaos : []
+            };
+
 
             /**
              *
@@ -106,7 +110,53 @@
 
                 });
             };
-            
+
+            /**
+             * DIALOG
+             *
+             */
+            $scope.irmaoDialog = function (ev, irmao) {
+
+                $mdDialog.show({
+                    controller: IrmaoDialogController,
+                    templateUrl: 'modules/home/views/aluno/irmao-dialog/irmao-dialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose:true,
+                    locals: { irmao: angular.copy(irmao),
+                        popupConfig: {
+                            title : irmao ? "Editar irmao" : "Nova irmao"
+                        }
+                    }
+                })
+                    .then(function( result ) {
+
+                        if ( irmao ) {
+                            //editou
+                            $scope.aluno.irmaos[$scope.aluno.irmaos.indexOf(irmao)] = result;
+
+                        } else {
+                            $scope.aluno.irmaos.push( result );
+                        }
+                    });
+
+            };
+
+            function IrmaoDialogController($scope, $mdDialog, irmao, popupConfig) {
+
+                $scope.irmao =  irmao ;
+                $scope.popupConfig  = popupConfig;
+
+
+                $scope.cancel = function() {
+                    $mdDialog.cancel();
+                };
+
+                $scope.answer = function( irmao ) {
+                    $mdDialog.hide( irmao )
+                };
+
+            }
 
 
             $scope.save = function( aluno ){

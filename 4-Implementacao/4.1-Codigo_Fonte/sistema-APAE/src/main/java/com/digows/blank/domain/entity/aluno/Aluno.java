@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -17,6 +20,7 @@ import javax.persistence.TemporalType;
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
 
+import com.digows.blank.domain.entity.funcionario.Formacao;
 import com.digows.blank.domain.entity.pessoa.Pessoa;
 import com.digows.blank.domain.entity.transporte.Transporte;
 
@@ -70,8 +74,9 @@ public class Aluno extends Pessoa implements Serializable
 	@Column(length = 100)
 	private String alergia;
 	
-	@OneToMany
-	private List<Irmao> irmao;
+	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
+	@JoinColumn(name="pessoa_id")
+	private List<Irmao> irmaos;
 	
 	@ManyToOne
 	private Transporte transporte;
@@ -104,15 +109,181 @@ public class Aluno extends Pessoa implements Serializable
 	 *						GETTERS AND SETTERS
 	 *-------------------------------------------------------------------*/
 
-	
-
-	
 	/**
-	 * 
-	 * @param id
-	 * @param name
-	 * @param enabled
+	 * @return the naturalidade
 	 */
+	public String getNaturalidade()
+	{
+		return naturalidade;
+	}
+
+	/**
+	 * @param naturalidade the naturalidade to set
+	 */
+	public void setNaturalidade( String naturalidade )
+	{
+		this.naturalidade = naturalidade;
+	}
+
+	/**
+	 * @return the sereCgm
+	 */
+	public String getSereCgm()
+	{
+		return sereCgm;
+	}
+
+	/**
+	 * @param sereCgm the sereCgm to set
+	 */
+	public void setSereCgm( String sereCgm )
+	{
+		this.sereCgm = sereCgm;
+	}
+
+	/**
+	 * @return the sus
+	 */
+	public String getSus()
+	{
+		return sus;
+	}
+
+	/**
+	 * @param sus the sus to set
+	 */
+	public void setSus( String sus )
+	{
+		this.sus = sus;
+	}
+
+	/**
+	 * @return the bpc
+	 */
+	public String getBpc()
+	{
+		return bpc;
+	}
+
+	/**
+	 * @param bpc the bpc to set
+	 */
+	public void setBpc( String bpc )
+	{
+		this.bpc = bpc;
+	}
+
+	/**
+	 * @return the beneficio
+	 */
+	public String getBeneficio()
+	{
+		return beneficio;
+	}
+
+	/**
+	 * @param beneficio the beneficio to set
+	 */
+	public void setBeneficio( String beneficio )
+	{
+		this.beneficio = beneficio;
+	}
+
+	/**
+	 * @return the autorizacaoIrSozinho
+	 */
+	public Boolean getAutorizacaoIrSozinho()
+	{
+		return autorizacaoIrSozinho;
+	}
+
+	/**
+	 * @param autorizacaoIrSozinho the autorizacaoIrSozinho to set
+	 */
+	public void setAutorizacaoIrSozinho( Boolean autorizacaoIrSozinho )
+	{
+		this.autorizacaoIrSozinho = autorizacaoIrSozinho;
+	}
+
+	/**
+	 * @return the bolsaFamilia
+	 */
+	public Boolean getBolsaFamilia()
+	{
+		return bolsaFamilia;
+	}
+
+	/**
+	 * @param bolsaFamilia the bolsaFamilia to set
+	 */
+	public void setBolsaFamilia( Boolean bolsaFamilia )
+	{
+		this.bolsaFamilia = bolsaFamilia;
+	}
+
+	/**
+	 * @return the alergia
+	 */
+	public String getAlergia()
+	{
+		return alergia;
+	}
+
+	/**
+	 * @param alergia the alergia to set
+	 */
+	public void setAlergia( String alergia )
+	{
+		this.alergia = alergia;
+	}
+
+	/**
+	 * @return the irmaos
+	 */
+	public List<Irmao> getIrmaos()
+	{
+		return irmaos;
+	}
+
+	/**
+	 * @param irmaos the irmaos to set
+	 */
+	public void setIrmaos( List<Irmao> irmaos )
+	{
+		this.irmaos = irmaos;
+	}
+
+	/**
+	 * @return the transporte
+	 */
+	public Transporte getTransporte()
+	{
+		return transporte;
+	}
+
+	/**
+	 * @param transporte the transporte to set
+	 */
+	public void setTransporte( Transporte transporte )
+	{
+		this.transporte = transporte;
+	}
+
+	/**
+	 * @return the posicaoListaEspera
+	 */
+	public PosicaoListaEspera getPosicaoListaEspera()
+	{
+		return posicaoListaEspera;
+	}
+
+	/**
+	 * @param posicaoListaEspera the posicaoListaEspera to set
+	 */
+	public void setPosicaoListaEspera( PosicaoListaEspera posicaoListaEspera )
+	{
+		this.posicaoListaEspera = posicaoListaEspera;
+	}
 
 	
 	/*-------------------------------------------------------------------
@@ -124,6 +295,8 @@ public class Aluno extends Pessoa implements Serializable
 	{
 //		Assert.isTrue( !this.getNome().isEmpty(), "Digite o nome do aluno");
 	}
+
+	
 	
 	
 }

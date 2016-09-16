@@ -14,40 +14,43 @@
     </div>
 
 </md-toolbar>
+<md-button aria-label="Novo aluno"
+           class="md-fab save-button"
+           ui-sref="aluno.new">
+    <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
+</md-button>
 
+<div style="padding: 30px">
+    <md-table-container class="table" style="border: 1px black solid; background: white;">
 
-<md-table-container class="table" style="border: 1px #DDDDDD solid">
-
-    <md-button aria-label="Novo aluno"
-               class="md-fab save-button"
-               ui-sref="aluno.new">
-        <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
-    </md-button>
-
-    <table md-table style="width: 100%">
-        <thead md-head class="header-list">
+        <table md-table>
+            <thead md-head>
             <tr md-row>
-                <th md-column><span>Nome</span></th>
-                <th md-column><span>Telefone</span></th>
-                <th md-column><span></span></th>
+                <th md-column style="width: 70%"><span>Nome</span></th>
+                <th md-column style="width: 20%"><span>Telefone</span></th>
+                <th md-column flex="10"><span></span></th>
             </tr>
-        </thead>
-        <tbody md-body>
-        <tr md-row md-auto-select ng-click="changeToDetail(aluno)"
-            ng-repeat="aluno in model.pageRequest.content track by $index">
-            <td md-cell>{{aluno.nome}}</td>
-            <td md-cell>{{aluno.telefone}}</td>
-            <td md-cell>
-                <md-button ng-click="removeAluno($event, aluno); $event.stopPropagation()" aria-label="remove" class="md-raised table-button">
-                    <md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
-                </md-button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</md-table-container>
+            </thead>
+            <tbody md-body>
+            <tr md-row md-auto-select ng-click="changeToDetail(aluno)"
+                ng-repeat="aluno in model.pageRequest.content track by $index">
+                <td md-cell>{{aluno.nome}}</td>
+                <td md-cell>{{aluno.telefone}}</td>
+                <td md-cell>
+                    <md-button ng-click="removeAluno($event, aluno); $event.stopPropagation()" aria-label="remove" class="md-raised table-button">
+                        <md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
+                    </md-button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
 
-<md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"
+</div>
+
+<md-table-pagination md-limit="model.pageRequest.size"
+                     md-limit-options="[5, 10, 15, 20]"
+                     md-page="model.pageRequest.page"
                      md-on-paginate="getDesserts" md-page-select></md-table-pagination>
 
 </html>
