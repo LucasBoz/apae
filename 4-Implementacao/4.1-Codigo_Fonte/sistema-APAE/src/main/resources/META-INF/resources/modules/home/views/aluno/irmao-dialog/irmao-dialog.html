@@ -1,8 +1,8 @@
 <md-dialog aria-label=formacao" ng-cloak style="min-width: 450px ">
-    <form>
+    <form name="model.irmaoForm" id="irmaoForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Irmao</h2>
+                <h2>Irmão</h2>
 
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
@@ -13,12 +13,12 @@
 
         <md-dialog-content>
             <div class="md-dialog-content">
-                <form name="irmaoForm" id="irmaoForm" >
+                <div >
 
                     <div layout="row">
                         <md-input-container flex="60">
                             <label>Nome</label>
-                            <input ng-model="irmao.nome" name="login" type="text" md-maxlength="12">
+                            <input ng-model="irmao.nome" name="login" type="text" md-maxlength="200" required>
                         </md-input-container>
 
                         <div flex>
@@ -27,7 +27,8 @@
                         </div>
 
                     </div>
-                </form>
+                </div>
+
 
             </div>
         </md-dialog-content>
@@ -37,7 +38,8 @@
             <md-button ng-click="cancel()">
                 Cancelar
             </md-button>
-            <md-button ng-click="answer(irmao)">
+            <md-button ng-click="answer(irmao)"
+                       ng-disabled="!model.irmaoForm.$valid">
                Salvar
             </md-button>
         </md-dialog-actions>

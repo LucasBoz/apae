@@ -14,11 +14,18 @@
 			</md-input-container>
 
 			<md-input-container width="350">
-				<label>{{::'password' | translate}}</label>
+				<label>Senha</label>
 				<input type="password" name="password" ng-model="model.entity.password" required>
 			</md-input-container>
 
-			<md-button class="md-raised md-primary" ng-click="signinHandler()">Entrar</md-button>
+			<md-button class="md-raised md-primary"
+					   width="350"
+					   style="background: #e77817; height: 60px"
+					   ng-click="signinHandler()">
+				Entrar
+			</md-button>
+
+
 		</form>
 
 

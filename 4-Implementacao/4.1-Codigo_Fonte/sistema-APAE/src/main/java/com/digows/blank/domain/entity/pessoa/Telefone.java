@@ -30,13 +30,43 @@ public class Telefone extends AbstractEntity implements Serializable
 	 */
 	private static final long serialVersionUID = 1466423751687497277L;
 
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, length = 20)
 	private String numero;
 	
 	@Column( length = 50)
 	private String tipo;
-	
-	@ManyToOne
-	private Pessoa pessoa;
 
+	/**
+	 * @return the numero
+	 */
+	public String getNumero()
+	{
+		return numero;
+	}
+
+	/**
+	 * @param numero the numero to set
+	 */
+	public void setNumero( String numero )
+	{
+		this.numero = numero;
+	}
+
+	/**
+	 * @return the tipo
+	 */
+	public String getTipo()
+	{
+		return tipo;
+	}
+
+	/**
+	 * @param tipo the tipo to set
+	 */
+	public void setTipo( String tipo )
+	{
+		this.tipo = tipo;
+	}
+	
+	
 }

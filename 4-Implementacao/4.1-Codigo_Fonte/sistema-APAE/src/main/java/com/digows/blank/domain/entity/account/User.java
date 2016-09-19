@@ -69,7 +69,7 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	 * 
 	 */
 	@NotBlank
-	@Length(min = 8)
+	@Length(min = 6)
 	@Column(nullable = false, length = 100)
 	private String password;
 	/**

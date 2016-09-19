@@ -41,7 +41,7 @@ public class AreaAtendimentoTests extends AbstractIntegrationTests
 	}
 	
 	
-	@Test( expected=ValidationException.class )
+	@Test( expected= AssertionError.class )
 	public void saveAreaAtendimentoMustFail() 
 	{ 
 		
@@ -59,7 +59,7 @@ public class AreaAtendimentoTests extends AbstractIntegrationTests
 	
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
-		"/dataset/areaAtendimento/areaAtendimentoDataSet.xml"
+		"/dataset/funcionario/areaAtendimentoDataSet.xml"
 	})
 	public void updateAreaAtendimentoMustPast() {
 		
@@ -75,9 +75,9 @@ public class AreaAtendimentoTests extends AbstractIntegrationTests
 
 	}
 	
-	@Test
+	@Test( expected= AssertionError.class )
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
-		"/dataset/areaAtendimento/areaAtendimentoDataSet.xml"
+		"/dataset/funcionario/areaAtendimentoDataSet.xml"
 
 	})
 	public void updateAreaAtendimentoMustFail() {
@@ -97,7 +97,7 @@ public class AreaAtendimentoTests extends AbstractIntegrationTests
 	
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
-		"/dataset/areaAtendimento/areaAtendimentoDataSet.xml"
+		"/dataset/funcionario/areaAtendimentoDataSet.xml"
 
 	})
 	public void listAreaAtendimentoMustReturn3() {
@@ -113,14 +113,12 @@ public class AreaAtendimentoTests extends AbstractIntegrationTests
 	
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
-		"/dataset/pessoa/enderecoDataSet.xml",
-		"/dataset/areaAtendimento/areaAtendimentoDataSet.xml",
-		"/dataset/areaAtendimento/formacaoDataSet.xml",
+		"/dataset/funcionario/areaAtendimentoDataSet.xml"
 
 	})
 	public void listAreaAtendimentoByFilterNameMustReturn1() {
 		
-		Page<AreaAtendimento> areaAtendimentos = this.areaAtendimentoService.listAreaAtendimentosByFilters( "Lucas", null );
+		Page<AreaAtendimento> areaAtendimentos = this.areaAtendimentoService.listAreaAtendimentosByFilters( "Teste 1", null );
 		
 		Assert.assertTrue( areaAtendimentos.getContent().size() == 1 );
 
@@ -129,9 +127,7 @@ public class AreaAtendimentoTests extends AbstractIntegrationTests
 	
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
-		"/dataset/pessoa/enderecoDataSet.xml",
-		"/dataset/areaAtendimento/areaAtendimentoDataSet.xml",
-		"/dataset/areaAtendimento/formacaoDataSet.xml",
+		"/dataset/funcionario/areaAtendimentoDataSet.xml"
 
 	})
 	public void listAreaAtendimentoByFilterPageMustReturn1() {
@@ -147,9 +143,7 @@ public class AreaAtendimentoTests extends AbstractIntegrationTests
 	
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
-		"/dataset/pessoa/enderecoDataSet.xml",
-		"/dataset/areaAtendimento/areaAtendimentoDataSet.xml",
-		"/dataset/areaAtendimento/formacaoDataSet.xml",
+		"/dataset/funcionario/areaAtendimentoDataSet.xml"
 
 	})
 	public void listAreaAtendimentoByFilterPageMustFail() {
@@ -166,9 +160,7 @@ public class AreaAtendimentoTests extends AbstractIntegrationTests
 	
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
-		"/dataset/pessoa/enderecoDataSet.xml",
-		"/dataset/areaAtendimento/areaAtendimentoDataSet.xml",
-		"/dataset/areaAtendimento/formacaoDataSet.xml",
+		"/dataset/funcionario/areaAtendimentoDataSet.xml"
 
 	})
 	public void findAreaAtendimentoByIdMustPast()
@@ -180,7 +172,7 @@ public class AreaAtendimentoTests extends AbstractIntegrationTests
 	
 	@Test( expected=AssertionError.class )
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
-		"/dataset/areaAtendimento/areaAtendimentoDataSet.xml"
+		"/dataset/funcionario/areaAtendimentoDataSet.xml"
 
 	})
 	public void findAreaAtendimentoByIdMustFailWithInvalidId()

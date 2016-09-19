@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-
-	<public.area_atendimento
+		<public.pessoa
+		dtype="Voluntario"
 		id="1000"
 		created="2015-03-30 00:00:00"
-		nome="teste 1"
-		
+		nome="Lucas"
+		rg="123123"
 	/>
-	<public.area_atendimento
+	<public.pessoa
+		dtype="Voluntario"
 		id="1001"
 		created="2015-03-30 00:00:00"
-		nome="teste 2"
+		nome="Fernando"
+		rg="123123"
 		
 	/>
-	<public.area_atendimento
+		
+	<public.pessoa
+		dtype="Voluntario"
 		id="1002"
 		created="2015-03-30 00:00:00"
-		nome="teste 3"
+		nome="Boz"
+		rg="1qwe123"
 		
 	/>
 </dataset>

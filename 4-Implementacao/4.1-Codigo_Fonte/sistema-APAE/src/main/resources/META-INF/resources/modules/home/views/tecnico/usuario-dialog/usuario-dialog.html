@@ -15,31 +15,24 @@
                 <div>
 
                     <div>
-
-                        <md-input-container width="400" class="md-block">
-                            <label>Nome</label>
-                            <input name="nome" type="text" ng-model="user.name" required>
-                        </md-input-container>
+                        <p>{{user.name}}</p>
 
                         <md-input-container width="400" class="md-block" >
                             <label>Login</label>
                             <input name="nome" type="text" ng-model="user.login" required>
                         </md-input-container>
 
-                        <md-input-container width="400" class="md-block">
+
+
+                        <md-checkbox ng-if="user.id" ng-model="atualizarSenha" aria-label="bpc">
+                            Atualizar senha
+                        </md-checkbox>
+
+
+                        <md-input-container width="400" class="md-block" ng-if="atualizarSenha || !user.id">
                             <label>Senha</label>
                             <input name="nome" type="text" ng-model="user.password" required>
                         </md-input-container>
-
-                        <p>Perfil *</p>
-                        <md-radio-group ng-model="user.role" ng-if="user.role != 'TECNICO'" required>
-                            <md-radio-button value="COORDENADOR">Coordenador</md-radio-button>
-                            <md-radio-button value="SECRETARIA"> Secretaria </md-radio-button>
-                        </md-radio-group>
-
-                        <md-radio-group ng-model="user.role" ng-if="user.role == 'TECNICO'" required>
-                            <md-radio-button value="TECNICO"> Técnico </md-radio-button>
-                        </md-radio-group>
 
                     </div>
                 </div>

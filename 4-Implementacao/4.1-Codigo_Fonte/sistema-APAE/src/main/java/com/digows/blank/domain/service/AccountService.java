@@ -92,6 +92,18 @@ public class AccountService
 	
 	/**
 	 * 
+	 * @param user
+	 * @return
+	 */
+	public User updateUser( User user )
+	{
+		Assert.notNull( user );
+	
+		return this.userRepository.save( user );
+	}
+	
+	/**
+	 * 
 	 * @param id
 	 * @return
 	 */

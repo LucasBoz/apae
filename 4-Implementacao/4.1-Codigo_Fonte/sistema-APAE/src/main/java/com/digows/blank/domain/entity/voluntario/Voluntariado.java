@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
 
-import br.com.eits.common.domain.entity.AbstractEntity;
+import com.digows.blank.domain.entity.pessoa.Pessoa;
 
 /**
  * @author lucas
@@ -26,7 +26,7 @@ import br.com.eits.common.domain.entity.AbstractEntity;
 @Entity
 @Audited
 @DataTransferObject(javascript = "Voluntariado")
-public class Voluntariado extends AbstractEntity implements Serializable
+public class Voluntariado extends Pessoa implements Serializable
 {
 
 	

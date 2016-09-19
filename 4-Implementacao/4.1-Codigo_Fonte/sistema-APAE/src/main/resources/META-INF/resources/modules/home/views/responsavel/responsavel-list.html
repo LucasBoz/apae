@@ -11,18 +11,16 @@
             <span>Responsáveis</span>
         </div>
 
-        <md-button aria-label="Nova area de atendimento"
-                   class="md-fab save-button"
-                   ng-click="changeToEdit($event)">
-            <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
-        </md-button>
-
     </div>
 
 </md-toolbar>
 
 
-
+<md-button aria-label="Nova area de atendimento"
+           class="md-fab save-button"
+           ng-click="changeToEdit($event)">
+    <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
+</md-button>
 
 
 
@@ -41,7 +39,7 @@
         <tbody md-body>
         <tr md-row  md-auto-select ng-click="changeToEdit($event, responsavel)" ng-repeat="responsavel in model.pageRequest.content">
             <td md-cell >{{responsavel.nome}}</td>
-            <td md-cell>{{responsavel.telefone}}</td>
+            <td md-cell>{{responsavel.telefones[0].numero}}</td>
             <td md-cell>{{responsavel.localTrabalho}}</td>
             <td md-cell>
                 <md-button ng-click="removeResponsavel($event, responsavel); $event.stopPropagation()" aria-label="remove" class="md-raised table-button">

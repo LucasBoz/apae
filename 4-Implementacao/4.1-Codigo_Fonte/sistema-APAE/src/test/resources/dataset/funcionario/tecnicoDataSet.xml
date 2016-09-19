@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
 		<public.pessoa
-		dtype="Funcionario"
+		dtype="Tecnico"
 		id="1000"
 		created="2015-03-30 00:00:00"
 		nome="Lucas"
@@ -18,7 +18,7 @@
 		local_nascimento_id="1001"
 	/>
 	<public.pessoa
-		dtype="Funcionario"
+		dtype="Tecnico"
 		id="1001"
 		created="2015-03-30 00:00:00"
 		nome="Fernando"
@@ -36,7 +36,7 @@
 	/>
 		
 	<public.pessoa
-		dtype="Funcionario"
+		dtype="Tecnico"
 		id="1002"
 		created="2015-03-30 00:00:00"
 		nome="Boz"

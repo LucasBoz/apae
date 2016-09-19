@@ -1,5 +1,5 @@
-<md-dialog aria-label=responsavel" ng-cloak style="min-width: 450px ">
-    <form>
+    <md-dialog aria-label=responsavel" ng-cloak style="min-width: 450px ">
+    <form name="model.responsavelForm" id="responsavelForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2 ng-if="responsavel.id">Editar responsável</h2>
@@ -13,46 +13,89 @@
 
         <md-dialog-content>
             <div class="md-dialog-content">
-                <form name="responsavelForm" id="responsavelForm" >
+                <div>
 
-                    <div>
+                    <div layout="row">
+                        <div>
 
-                        <md-input-container width="300" class="md-block" >
-                            <label>Nome</label>
-                            <input required="true" name="nome" type="text" ng-model="responsavel.nome">
-                            <div ng-messages="responsavelForm.email.$error" md-auto-hide="false">
-                                <div ng-message="required"> Campo obrigatório </div>
+                            <md-input-container width="350" class="md-block">
+                                <label>Nome</label>
+                                <input required="true" name="nome" type="text" ng-model="responsavel.nome">
+                                <div ng-messages="model.responsavelForm.nome.$error" md-auto-hide="false">
+                                    <div ng-message="required"> Campo obrigatório </div>
+                                </div>
+                            </md-input-container>
+
+
+                            <div layout="row">
+                                <md-input-container width="150" class="md-block">
+                                    <label>RG</label>
+                                    <input name="rg" type="text" ng-model="responsavel.rg">
+                                </md-input-container>
+
+                                <md-input-container width="150" class="md-block">
+                                    <label>CPF</label>
+                                    <input name="cpf" type="text" ng-model="responsavel.cpf">
+                                </md-input-container>
                             </div>
-                        </md-input-container>
 
 
-                        <md-input-container width="300" class="md-block" >
-                            <label>Telefone*</label>
-                            <input name="Telefone" type="text" ng-model="responsavel.telefone">
-                        </md-input-container>
-
-                        <div layout="row">
-                            <md-input-container width="150" class="md-block" >
-                                <label>RG</label>
-                                <input name="rg" type="text" ng-model="responsavel.rg">
+                            <md-input-container width="300" class="md-block">
+                                <label>Local de trabalho</label>
+                                <input name="localTrabalho" type="text" ng-model="responsavel.localTrabalho">
                             </md-input-container>
 
-                            <md-input-container width="150" class="md-block" >
-                                <label>CPF</label>
-                                <input name="cpf" type="text" ng-model="responsavel.cpf">
+                            <md-input-container width="300" class="md-block">
+                                <label>Telefone do local</label>
+                                <input name="TelefoneLocal" type="text" ng-model="responsavel.telefoneLocalTrabalho">
                             </md-input-container>
+
+                            <md-input-container width="300" class="md-block">
+                                <label>Profissão</label>
+                                <input name="profisao" type="text" ng-model="responsavel.profissao">
+                            </md-input-container>
+                        </div>
+
+                        <div layout="column">
+
+                            <p>Telefones</p>
+
+                            <div ng-repeat="telefone in responsavel.telefones" >
+
+                                <div layout="row">
+                                    <md-input-container width="150" class="md-block">
+                                        <label>Número</label>
+                                        <input name="numero" type="text" ng-model="telefone.numero" required>
+
+                                    </md-input-container>
+
+                                    <md-input-container width="150" class="md-block">
+                                        <label>Observação</label>
+                                        <input name="tipo" type="text" ng-model="telefone.tipo">
+                                    </md-input-container>
+
+                                    <md-button aria-label="remove"
+                                               class="md-icon-button launch"
+                                               ng-click="removeTelefone(telefone)">
+                                        <md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
+                                    </md-button>
+
+                                </div>
+
+                            </div>
+
+                            <md-button ng-click="responsavel.telefones.push({numero : '', tipo : ''})">
+                                Novo telefone
+                            </md-button>
 
                         </div>
 
 
-                        <md-input-container width="300" class="md-block" >
-                            <label>Local de trabalho</label>
-                            <input name="localTrabalho" type="text" ng-model="responsavel.localTrabalho">
-                        </md-input-container>
+
 
                     </div>
-                </form>
 
+                </div>
 
 
             </div>

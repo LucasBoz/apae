@@ -44,6 +44,10 @@ public class AreaAtendimentoService
 	public AreaAtendimento updateAreaAtendimento( AreaAtendimento areaAtendimento)
 	{
 		Assert.notNull( areaAtendimento );
+		
+		Assert.notNull( areaAtendimento.getNome(), "Campo nome é obrigatório" );
+		
+		Assert.isTrue( !areaAtendimento.getNome().isEmpty(), "Campo nome é obrigatório");
 
 		return this.areaAtendimentoRepository.save( areaAtendimento );
 	}

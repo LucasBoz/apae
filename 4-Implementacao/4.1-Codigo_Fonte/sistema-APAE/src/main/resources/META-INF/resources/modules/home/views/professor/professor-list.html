@@ -5,7 +5,7 @@
 
 <md-toolbar class="md-table-toolbar md-primary">
     <div class="md-toolbar-tools">
-        <span>Funcionários</span>
+        <span>Professores</span>
     </div>
 </md-toolbar>
 
@@ -21,15 +21,15 @@
 </form>
 
 
-<md-button aria-label="Pesquisar funcionário"
-           ng-click="listFuncionariosByFilters( model.query.filter.name )"
+<md-button aria-label="Pesquisar professor"
+           ng-click="listProfessorsByFilters( model.query.filter.name )"
            class="md-raised md-icon-button">
     <md-icon md-svg-src="/static/icon/search.svg"></md-icon>
 </md-button>
 
-<md-button aria-label="Novo funcionário"
+<md-button aria-label="Novo professor"
            class="md-fab save-button"
-           ui-sref="funcionario.new">
+           ui-sref="professor.new">
     <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
 </md-button>
 
@@ -45,13 +45,13 @@
         </tr>
         </thead>
         <tbody md-body>
-        <tr md-row md-auto-select ng-click="changeToDetail(funcionario)"
-            ng-repeat="funcionario in model.pageRequest.content">
-            <td md-cell>{{funcionario.nome}}</td>
-            <td md-cell>{{funcionario.email}}</td>
-            <td md-cell>{{funcionario.telefone}}</td>
+        <tr md-row md-auto-select ng-click="changeToDetail(professor)"
+            ng-repeat="professor in model.pageRequest.content">
+            <td md-cell>{{professor.nome}}</td>
+            <td md-cell>{{professor.email}}</td>
+            <td md-cell>{{professor.telefone}}</td>
             <td md-cell>
-                <md-button ng-click="removeFuncionario($event, funcionario)" aria-label="remove" class="md-icon-button">
+                <md-button ng-click="removeProfessor($event, professor)" aria-label="remove" class="md-icon-button">
                     <md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
                 </md-button>
             </td>

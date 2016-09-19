@@ -90,21 +90,34 @@
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         clickOutsideToClose:true,
-                        locals: {responsavel: responsavel, content: $scope.model.pageRequest.content}
+                        locals: {responsavel: angular.copy(responsavel)}
                     })
                     .then(function(answer) {
+
+                        var idx = $scope.model.pageRequest.content.indexOf(responsavel);
+
+                        if( idx > -1 ){
+
+                            //editou
+                            $scope.model.pageRequest.content[idx] = answer;
+
+                        } else {
+                            //Novo dado
+                            $scope.model.pageRequest.content.unshift( answer );
+
+                        }
 
                     });
           
             };
 
-            function ResponsavelDialogController($scope, $mdDialog, responsavel, content) {
+            function ResponsavelDialogController($scope, $mdDialog, responsavel) {
 
-                $scope.oldResponsavel = responsavel;
+                $scope.responsavel = responsavel;
 
-                $scope.responsavel =  angular.copy(responsavel);
-
-                $scope.content = content;
+                if(!$scope.responsavel){
+                    $scope.responsavel = {telefones : []};
+                }
 
                 $scope.save = function( responsavel ){
 
@@ -115,9 +128,7 @@
 
                                 $rootScope.toast("Responsável inserido com sucesso");
 
-                                $scope.content.push( result );
-
-                                $mdDialog.hide();
+                                $mdDialog.hide(result);
 
                             }, errorHandler: function (message, exception) {
                                 $rootScope.toast(message);
@@ -129,16 +140,20 @@
 
                                 $rootScope.toast("Responsável atualizado com sucesso");
 
-                                //Atualiza o responsavel da listagem
-                                $scope.content[$scope.content.indexOf($scope.oldResponsavel)] = result;
-
-                                $mdDialog.hide();
+                                $mdDialog.hide(result);
 
                             }, errorHandler: function (message, exception) {
                                 $rootScope.toast(message);
                             }
                         })
                     }
+
+                };
+
+                $scope.removeTelefone = function(telefone){
+
+                    var idx = $scope.responsavel.telefones.indexOf(telefone);
+                    $scope.responsavel.telefones[idx] = { numero : 'deletado', tipo : 'tambem' }
 
                 };
 

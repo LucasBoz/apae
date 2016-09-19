@@ -1,0 +1,360 @@
+<html xmlns:ng="http://angularjs.org" lang="pt">
+
+<md-toolbar class="md-table-toolbar md-primary">
+
+    <div layout="row">
+
+        <div class="md-toolbar-tools">
+
+            <md-button aria-label="Voltar"
+                       class="md-icon-button launch"
+                       ui-sref="professor.list">
+                <md-icon md-svg-src="/static/icon/arrow-left2.svg"></md-icon>
+            </md-button>
+
+            <span ng-if="!professor.id">Novo professor</span>
+            <span ng-if="professor.id">Editar professor</span>
+        </div>
+    </div>
+
+</md-toolbar>
+
+
+<md-content layout="column" layout-align="start center" class="content flex layout-fill">
+
+    <div layout-align="center center" class="eits-content">
+
+        <md-button aria-label="Editar professor"
+                   class="md-fab save-button"
+                   ng-click="save(professor)">
+            <md-icon md-svg-src="/static/icon/save.svg"></md-icon>
+        </md-button>
+
+        <form name="modelForm" novalidate>
+
+
+            <div class="eits-paper-sheet-item" >
+                <div class="paper-sheet-closed">
+                    <content-open class="ng-scope">
+                        <div layout="column">
+
+                            <div layout="row">
+                                <md-input-container flex>
+                                    <label>Nome</label>
+                                    <input type="text" ng-model="professor.nome" md-maxlength="200" name="nome" required>
+                                    <div ng-messages="modelForm.nomeCompleto.$error">
+                                        <div ng-message="required">Campo nome é obrigatório</div>
+                                    </div>
+                                </md-input-container>
+
+                            </div>
+
+
+                            <div layout="row">
+                                <md-input-container flex="60">
+                                    <label>Identificação única (Código gerado pelo Inep)</label>
+                                    <input ng-model="professor.codigoInep" name="login" type="text" md-maxlength="12">
+                                </md-input-container>
+
+                                <div flex>
+                                    <label>Data de nascimento</label>
+                                    <md-datepicker ng-model="professor.dataNascimento" placeholder="Data de nascimento"></md-datepicker>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </content-open>
+                </div>
+            </div>
+
+
+            <eits-paper-sheet id="dadosIdentificacao">
+
+                <content-closed>
+                    <h4>Dados de identificação</h4>
+                    <md-divider></md-divider>
+                </content-closed>
+
+                <content-opened>
+                    <div layout="column">
+
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Email</label>
+                                <input ng-model="professor.email" type="email" name="email" md-maxlength="100">
+                            </md-input-container>
+
+                            <md-input-container flex>
+                                <label>Número de identificação social (NIS)</label>
+                                <input ng-model="professor.numeroIdentificacaoSocial" type="text" name="numeroIdentificacaoSocial" md-maxlength="11">
+                            </md-input-container>
+                        </div>
+
+                        <div layout="row">
+
+                            <md-input-container flex="50">
+                                <label>CPF</label>
+                                <input type="text" ng-model="professor.cpf" md-maxlength="11" name="nome">
+
+                            </md-input-container>
+
+                            <md-input-container flex>
+
+                                <label>RG</label>
+                                <input ng-model="professor.rg" name="login" type="text" md-maxlength="12">
+
+                            </md-input-container>
+
+                        </div>
+
+                        <div layout="row">
+
+                            <md-input-container flex>
+                                <label>Nome do pai</label>
+                                <input ng-model="professor.nomePai" name="nomePai" type="text" md-maxlength="100">
+                            </md-input-container>
+
+                        </div>
+
+                        <div layout="row">
+                            <md-input-container flex>
+                                <label>Nome da mãe</label>
+                                <input ng-model="professor.nomeMae" type="text" name="nome" md-maxlength="100">
+                            </md-input-container>
+
+                        </div>
+
+                    </div>
+                </content-opened>
+            </eits-paper-sheet>
+
+            <eits-paper-sheet id="maisInformacoes" on-open="onOpenEventHandler()">
+                <content-closed>
+                    <h4>Mais informações</h4>
+                    <md-divider></md-divider>
+                </content-closed>
+
+                <content-opened>
+
+                    <div layout="row">
+
+                        <div flex="40">
+                            <p>Sexo</p>
+                            <md-radio-group ng-model="professor.sexo" layout="row">
+
+                                <md-radio-button value="MASCULINO"> Masculino </md-radio-button>
+                                <md-radio-button value="FEMININO"> Feminino </md-radio-button>
+
+                            </md-radio-group>
+
+
+                        </div>
+
+                        <div flex="60">
+                            <p>Cor/Raça</p>
+
+                            <md-radio-group ng-model="professor.cor" layout="row" >
+
+                                <div layout-padding>
+                                    <md-radio-button value="BRANCA">Branca</md-radio-button>
+                                    <md-radio-button value="AMARELA"> Amarela </md-radio-button>
+                                </div>
+
+                                <div layout-padding>
+                                    <md-radio-button value="PRETA">Preta</md-radio-button>
+                                    <md-radio-button value="INDIGENA"> Indígena </md-radio-button>
+
+                                </div>
+                                <div layout-padding>
+                                    <md-radio-button value="PARDA">Parda</md-radio-button>
+                                    <md-radio-button value="NAO_DECLARADA"> Não declarada </md-radio-button>
+
+                                </div>
+
+                            </md-radio-group>
+
+                        </div>
+
+                    </div>
+                    <md-divider></md-divider>
+
+
+                    <div layout="column">
+                        <p>Local de nascimento</p>
+
+                        <div layout="row">
+                            <md-input-container flex="20">
+                                <label>UF de nascimento</label>
+                                <input ng-model="professor.localNascimento.uf" type="text" name="nome" md-maxlength="2">
+                            </md-input-container>
+
+                            <md-input-container flex="80">
+                                <label>Município de nascimento</label>
+                                <input ng-model="professor.localNascimento.municipio" type="text" name="nome" md-maxlength="100">
+                            </md-input-container>
+
+                        </div>
+
+                    </div>
+                    <md-divider></md-divider>
+                    <div>
+                        <p>Tipo de deficiência</p>
+
+                        <md-radio-group ng-model="professor.tipoDeficiencia" layout="row" >
+
+                            <div layout-padding>
+                                <md-radio-button value="BAIXA_VISAO">Baixa visão</md-radio-button>
+                                <md-radio-button value="CEGUEIRA"> Cegueira </md-radio-button>
+
+                            </div>
+
+                            <div layout-padding>
+                                <md-radio-button value="AUDITIVA">Deficiência auditiva</md-radio-button>
+                                <md-radio-button value="FISICA"> Deficiência física</md-radio-button>
+                            </div>
+
+                            <div layout-padding>
+                                <md-radio-button value="INTELECTUAL">Deficiência intelectual</md-radio-button>
+                                <md-radio-button value="SURDO"> Surdez </md-radio-button>
+                            </div>
+
+
+                            <div layout-padding>
+
+                                <md-radio-button value="SURDOSEGUEIRA">Surdosegueira</md-radio-button>
+                                <md-radio-button value="MULTIPLA"> Deficiência múltipla </md-radio-button>
+                            </div>
+                        </md-radio-group>
+
+                    </div>
+
+
+                </content-opened>
+
+            </eits-paper-sheet>
+
+            <eits-paper-sheet id="endereco" on-open="onOpenEventHandler()">
+                <content-closed>
+                    <h4>Endereço</h4>
+                    <md-divider></md-divider>
+                </content-closed>
+
+                <content-opened>
+
+                    <div layout="row">
+                        <md-input-container flex="20">
+                            <label>CEP</label>
+                            <input ng-model="professor.endereco.cep" type="text" name="nome" md-maxlength="100">
+                        </md-input-container>
+
+                        <md-input-container flex="60">
+                            <label>Logradouro</label>
+                            <input ng-model="professor.endereco.logradouro" type="text" name="logradouro" md-maxlength="100">
+                        </md-input-container>
+
+                        <md-input-container flex="20">
+                            <label>Número</label>
+                            <input ng-model="professor.endereco.numero" type="text" name="numero" md-maxlength="50">
+                        </md-input-container>
+
+                    </div>
+
+
+                    <div layout="row">
+                        <md-input-container flex="50">
+                            <label>Complemento</label>
+                            <input ng-model="professor.endereco.municipio" type="text" name="municipio" md-maxlength="100">
+                        </md-input-container>
+
+                        <md-input-container flex="45">
+                            <label>Cidade</label>
+                            <input ng-model="professor.endereco.cidade" type="text" name="cidade" md-maxlength="100">
+                        </md-input-container>
+
+                        <md-input-container flex="5">
+                            <label>UF</label>
+                            <input ng-model="professor.endereco.uf" type="text" name="uf" md-maxlength="2" max-length="2">
+                        </md-input-container>
+
+                    </div>
+
+
+                </content-opened>
+
+            </eits-paper-sheet>
+
+            <eits-paper-sheet id="formacao" on-open="onOpenEventHandler()">
+                <content-closed>
+                    <h4>Formação</h4>
+                    <md-divider></md-divider>
+                </content-closed>
+
+                <content-opened>
+
+                    <md-button class="md-accent md-raised md-hue-1"  ng-click="formacaoDialog($event)" style="position: absolute ;right: 40px; top: 10px;">
+                        NOVA FORMAÇÃO
+                    </md-button>
+
+                    <div ng-repeat="formacao in professor.formacoes">
+
+                        <div ng-click="formacaoDialog($event, formacao)" layout="column">
+
+                            <div>
+                                <span ng-if="formacao.area"> Área: <b> {{formacao.area}} </b></span>
+                                <span ng-if="formacao.codigo"> Código:  <b>{{formacao.codigo}} </b></span>
+                                <span ng-if="formacao.anoInicio"> Ano início:  <b>{{formacao.anoInicio}} </b></span>
+                                <span ng-if="formacao.anoConclusao"> Ano conclusão:  <b>{{formacao.anoConclusao}} </b></span>
+                            </div>
+
+                            <span ng-if="formacao.nomeInstituicao"> Nome da instituição:  <b>{{formacao.nomeInstituicao}} </b></span>
+
+                            <md-divider></md-divider>
+
+                        </div>
+
+                    </div>
+                    <div ng-if="!professor.formacoes.length">
+                        <h3> Nenhuma formação cadastrada </h3>
+                    </div>
+
+                </content-opened>
+
+            </eits-paper-sheet>
+
+            <eits-paper-sheet id="cursosEspecificos" on-open="onOpenEventHandler()">
+                <content-closed>
+                    <h4>Cursos específicos</h4>
+                    <md-divider></md-divider>
+                </content-closed>
+
+
+                <content-opened>
+                    <div layout="row" layout-wrap flex>
+                        <div flex="30" ng-repeat="item in cursosEspecificos" >
+                            <md-checkbox ng-checked="exists(item.name, professor.cursosEspecificos)"
+                                         ng-click="toggle(item.name, professor.cursosEspecificos)">
+                                {{ item.value }}
+                            </md-checkbox>
+                        </div>
+                    </div>
+
+                    <h3>Dados de docência</h3>
+                    <div layout="row" layout-wrap flex>
+                        <div flex="30" ng-repeat="item in funcoes" >
+                            <md-checkbox ng-checked="exists(item.name, professor.funcao)"
+                                         ng-click="toggle(item.name, professor.funcao)">
+                                {{ item.value }}
+                            </md-checkbox>
+                        </div>
+                    </div>
+                </content-opened>
+
+            </eits-paper-sheet>
+
+        </form>
+    </div>
+</md-content>
+</html>

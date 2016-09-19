@@ -5,12 +5,14 @@ package com.digows.blank.domain.entity.pessoa;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
@@ -52,9 +54,30 @@ public class Pessoa extends AbstractEntity implements Serializable
 	
 	@Column( length = 10)
 	private Sexo sexo;
+	
+	
+	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
+	@JoinColumn(name="pessoa_id")
+	private List<Telefone> telefones;
 
 	
 	
+	/**
+	 * @return the telefones
+	 */
+	public List<Telefone> getTelefones()
+	{
+		return telefones;
+	}
+
+	/**
+	 * @param telefones the telefones to set
+	 */
+	public void setTelefones( List<Telefone> telefones )
+	{
+		this.telefones = telefones;
+	}
+
 	/**
 	 * @return the sexo
 	 */

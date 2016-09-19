@@ -1,0 +1,119 @@
+<md-dialog aria-label=formacao" ng-cloak style="min-width: 450px ">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 >{{popupConfig.title}}</h2>
+
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <form name="formacaoForm" id="formacaoForm" >
+
+                    <div>
+
+                        <div layout="row">
+
+                            <div flex="50">
+                                <p>Situação do curso superior</p>
+                                <md-radio-group ng-model="formacao.situacao" layout="row" >
+                                    <md-radio-button value="CONCLUIDO"> Concluído </md-radio-button>
+                                    <md-radio-button value="EM_ANDAMENTO"> Em andamento</md-radio-button>
+                                </md-radio-group>
+                            </div>
+
+                            <md-input-container class="md-block" flex="25">
+                                <label>Ano de início</label>
+                                <input name="anoInicio" type="number" ng-model="formacao.anoInicio" maxlength="4" max="{{formacao.anoConclusao}}">
+
+                                <div ng-messages="formacaoForm.anoInicio.$error" md-auto-hide="false">
+                                    <div ng-message="min">
+                                        Ano de inicio deve ser anterior ao ano de conclusão
+                                    </div>
+                                </div>
+
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex="25">
+                                <label>Ano de conclusão</label>
+                                <input name="anoConclusao" type="number" ng-model="formacao.anoConclusao" maxlength="4" min="{{formacao.anoInicio}}">
+
+                                <div ng-messages="formacaoForm.anoConclusao.$error" md-auto-hide="false">
+                                    <div ng-message="min">
+                                        Ano de conclusão deve ser posterior ao ano de início
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+
+                        </div>
+
+                        <div layout="row">
+
+                            <md-input-container class="md-block" flex="20">
+                                <label>Área do curso</label>
+                                <input name="area" type="text" ng-model="formacao.area" md-maxlength="2">
+                            </md-input-container>
+
+                            <md-input-container class="md-block" flex="30">
+                                <label>Código do curso</label>
+                                <input name="area" type="text" ng-model="formacao.codigo" md-maxlength="20">
+                            </md-input-container>
+
+                        </div>
+
+
+                        <div layout="row">
+
+                            <div flex="50">
+
+                                <p>Formação/Complementação pegagoga</p>
+                                <md-radio-group ng-model="formacao.formacaoPedagoga" layout="row" >
+
+                                    <md-radio-button value="TRUE"> Sim </md-radio-button>
+                                    <md-radio-button value="FALSE"> Não </md-radio-button>
+
+                                </md-radio-group>
+                            </div>
+
+                            <div flex="50">
+                                <p>Tipo de instituição</p>
+                                <md-radio-group ng-model="formacao.tipoInstituicao" layout="row" >
+                                    <md-radio-button value="PUBLICA"> Pública </md-radio-button>
+                                    <md-radio-button value="PRIVADA"> Privada </md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </div>
+
+                        <div>
+                            <md-input-container class="md-block">
+                                <label>Nome da instituição</label>
+                                <input name="nomeInstituicao" type="text" ng-model="formacao.nomeInstituicao" md-maxlength="100">
+                            </md-input-container>
+
+                        </div>
+
+                    </div>
+                </form>
+
+
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                Cancelar
+            </md-button>
+            <md-button ng-click="answer(formacao)">
+                {{popupConfig.buttonConfirm}}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -41,9 +41,9 @@
                             <div layout="row">
                                 <md-input-container flex>
                                     <label>Nome</label>
-                                    <input type="text" ng-model="aluno.nome" md-maxlength="200" name="nome">
+                                    <input type="text" ng-model="aluno.nome" md-maxlength="200" name="nome" required>
                                     <div ng-messages="modelForm.nomeCompleto.$error">
-                                        <div ng-message="required">Campo nome é obrigatório</div>
+                                        <div ng-message="required">Campo obrigatório</div>
                                     </div>
                                 </md-input-container>
 
@@ -60,29 +60,29 @@
             </div>
 
 
-            <eits-paper-sheet id="responsaveis">
+            <eits-paper-sheet1 id="responsaveis">
 
-                <content-closed>
+                <content-closed1>
                     <h4>Responsáveis</h4>
                     <md-divider></md-divider>
-                </content-closed>
+                </content-closed1>
 
-                <content-opened>
+                <content-opened1>
                     <md-button class="md-accent md-raised md-hue-1"  ng-click="responsavelDialog($event)" style="position: absolute ;right: 40px; top: 10px;">
                        asd
                     </md-button>
 
-                </content-opened>
-            </eits-paper-sheet>
+                </content-opened1>
+            </eits-paper-sheet1>
 
-            <eits-paper-sheet id="irmaos">
+            <eits-paper-sheet1 id="irmaos">
 
-                <content-closed>
+                <content-closed1>
                     <h4>Irmãos</h4>
                     <md-divider></md-divider>
-                </content-closed>
+                </content-closed1>
 
-                <content-opened>
+                <content-opened1>
                     <md-button class="md-accent md-raised md-hue-1"  ng-click="irmaoDialog($event)" style="position: absolute ;right: 40px; top: 10px;">
                         Adicionar irmão
                     </md-button>
@@ -105,17 +105,17 @@
                             </div>
                         </div>
                     </div>
-                </content-opened>
-            </eits-paper-sheet>
+                </content-opened1>
+            </eits-paper-sheet1>
 
-            <eits-paper-sheet id="dadosIdentificacao">
+            <eits-paper-sheet1 id="dadosIdentificacao">
 
-                <content-closed>
+                <content-closed1>
                     <h4>Dados de identificação</h4>
                     <md-divider></md-divider>
-                </content-closed>
+                </content-closed1>
 
-                <content-opened>
+                <content-opened1>
                     <div layout="column">
 
                         <div layout="row">
@@ -190,17 +190,17 @@
                         </div>
 
                     </div>
-                </content-opened>
-            </eits-paper-sheet>
+                </content-opened1>
+            </eits-paper-sheet1>
 
 
-            <eits-paper-sheet id="endereco" on-open="onOpenEventHandler()">
-                <content-closed>
+            <eits-paper-sheet1 id="endereco" on-open="onOpenEventHandler()">
+                <content-closed1>
                     <h4>Endereço</h4>
                     <md-divider></md-divider>
-                </content-closed>
+                </content-closed1>
 
-                <content-opened>
+                <content-opened1>
 
                     <div layout="row">
                         <md-input-container flex="20">
@@ -240,17 +240,17 @@
                     </div>
 
 
-                </content-opened>
+                </content-opened1>
 
-            </eits-paper-sheet>
+            </eits-paper-sheet1>
 
-            <eits-paper-sheet id="beneficio" on-open="onOpenEventHandler()">
-                <content-closed>
+            <eits-paper-sheet1 id="beneficio" on-open="onOpenEventHandler()">
+                <content-closed1>
                     <h4>Mais informações</h4>
                     <md-divider></md-divider>
-                </content-closed>
+                </content-closed1>
 
-                <content-opened>
+                <content-opened1>
 
                     <div layout="row">
                         <div flex="50" layout-padding="">
@@ -321,9 +321,9 @@
 
                     </div>
 
-                </content-opened>
+                </content-opened1>
 
-            </eits-paper-sheet>
+            </eits-paper-sheet1>
 
         </form>
     </div>
