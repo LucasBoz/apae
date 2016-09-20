@@ -13,6 +13,9 @@
             $importService("accountService");
 
             $scope.model = {
+
+                atualizarSenha : false,
+
                 query : {
                     filter  : {name : null,
                         status : ""

@@ -18,8 +18,9 @@
 <md-button aria-label="Novo usuario"
            class="md-fab save-button"
            ng-click="changeToEdit($event)">
-    <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
+    <md-icon class="zmdi zmdi-plus zmdi-hc-fw zmdi-hc-2x"></md-icon>
 </md-button>
+
 
 
 <md-table-container class="table" style="border: 1px #DDDDDD solid">
@@ -29,11 +30,22 @@
 
         <tr md-row class="header-list">
             <th md-column ><span>Nome</span></th>
+            <th md-column ><span>Perfil</span></th>
+            <th md-column ><span></span></th>
         </tr>
         </thead>
         <tbody md-body>
         <tr md-row  md-auto-select ng-click="changeToEdit($event, user)" ng-repeat="user in model.pageRequest.content">
             <td md-cell >{{user.name}}</td>
+            <td md-cell >{{user.role}}</td>
+
+
+            <td md-cell>
+                <md-button ng-click="removeUser($event, user);  $event.stopPropagation()" aria-label="remove" class="md-icon-button">
+                    <md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
+                </md-button>
+            </td>
+
         </tr>
         </tbody>
     </table>

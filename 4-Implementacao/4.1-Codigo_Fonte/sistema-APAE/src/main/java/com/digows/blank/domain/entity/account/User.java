@@ -59,16 +59,16 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	@NotNull
 	@Column(nullable = false, length = 144, unique = true)
 	private String login;
+	
 	/**
 	 * 
 	 */
-	@NotNull
 	@Column(nullable = false)
 	private Boolean enabled;
 	/**
 	 * 
 	 */
-	@NotBlank
+
 	@Length(min = 6)
 	@Column(nullable = false, length = 100)
 	private String password;

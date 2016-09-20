@@ -33,6 +33,8 @@
              */
             $scope.model = {
 
+                atualizarSenha : false,
+
                 pageRequest : {//PageImpl
                     content : null,
                     pageable : {//PageRequest
@@ -291,7 +293,7 @@
 
                     name : tecnico.nome,
                     role : 'TECNICO',
-                    enabled  : 'true',
+                    enabled  : true,
                     login : user ? user.login : '',
                     id: tecnico.user ? tecnico.user.id : null
 

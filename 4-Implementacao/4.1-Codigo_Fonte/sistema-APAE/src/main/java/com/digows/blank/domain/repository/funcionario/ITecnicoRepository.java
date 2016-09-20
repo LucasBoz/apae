@@ -24,4 +24,6 @@ public interface ITecnicoRepository extends JpaRepository<Tecnico, Long>
 			+ "OR FILTER ( tecnico.email, :filter) = TRUE ")
 	public Page<Tecnico> listByFilters ( @Param("filter") String filter, Pageable page );
 	
+	public Tecnico findByUserId(Long userId);
+	
 }

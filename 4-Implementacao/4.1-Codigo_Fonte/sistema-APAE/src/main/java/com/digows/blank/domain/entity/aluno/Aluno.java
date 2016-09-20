@@ -1,30 +1,25 @@
 package com.digows.blank.domain.entity.aluno;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
 
-import com.digows.blank.domain.entity.funcionario.Formacao;
 import com.digows.blank.domain.entity.pessoa.Pessoa;
+import com.digows.blank.domain.entity.responsavel.Familiar;
 import com.digows.blank.domain.entity.transporte.Transporte;
-
-import br.com.eits.common.domain.entity.AbstractEntity;
 
 /**
  * 
@@ -75,8 +70,18 @@ public class Aluno extends Pessoa implements Serializable
 	private String alergia;
 	
 	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
-	@JoinColumn(name="pessoa_id")
+	@JoinColumn(name="aluno_id")
 	private List<Irmao> irmaos;
+	
+	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
+	@JoinColumn(name="aluno_id")
+	private List<Medida> medidas;
+	
+	@OneToMany( fetch = FetchType.EAGER, cascade= CascadeType.ALL )
+	@JoinColumn(name="aluno_id")
+	private Set<Familiar> familiares;
+	
+	
 	
 	@ManyToOne
 	private Transporte transporte;
@@ -147,6 +152,40 @@ public class Aluno extends Pessoa implements Serializable
 	public String getSus()
 	{
 		return sus;
+	}
+
+	/**
+	 * @return the medidas
+	 */
+	public List<Medida> getMedidas()
+	{
+		return medidas;
+	}
+
+	/**
+	 * @param medidas the medidas to set
+	 */
+	public void setMedidas( List<Medida> medidas )
+	{
+		this.medidas = medidas;
+	}
+
+
+
+	/**
+	 * @return the familiares
+	 */
+	public Set<Familiar> getFamiliares()
+	{
+		return familiares;
+	}
+
+	/**
+	 * @param familiares the familiares to set
+	 */
+	public void setFamiliares( Set<Familiar> familiares )
+	{
+		this.familiares = familiares;
 	}
 
 	/**

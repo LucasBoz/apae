@@ -26,10 +26,16 @@
                             <input name="nome" type="text" ng-model="user.login" required>
                         </md-input-container>
 
-                        <md-input-container width="400" class="md-block">
+
+                        <md-checkbox ng-if="user.id" ng-model="model.atualizarSenha" aria-label="bpc">
+                            Atualizar senha
+                        </md-checkbox>
+
+                        <md-input-container width="400" class="md-block" ng-if="model.atualizarSenha || !user.id">
                             <label>Senha</label>
                             <input name="nome" type="text" ng-model="user.password" required>
                         </md-input-container>
+
 
                         <p>Perfil *</p>
                         <md-radio-group ng-model="user.role" ng-if="user.role != 'TECNICO'" required>

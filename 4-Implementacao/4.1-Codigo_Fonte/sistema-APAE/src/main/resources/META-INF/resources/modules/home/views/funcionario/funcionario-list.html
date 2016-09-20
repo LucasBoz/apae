@@ -17,20 +17,19 @@
             <input ng-model="model.query.filter.name">
         </md-input-container>
 
+        <md-button aria-label="Pesquisar funcionário"
+                   ng-click="listFuncionariosByFilters( model.query.filter.name )"
+                   class="md-raised md-icon-button">
+            <md-icon md-svg-src="/static/icon/search.svg"></md-icon>
+        </md-button>
     </div>
 </form>
 
 
-<md-button aria-label="Pesquisar funcionário"
-           ng-click="listFuncionariosByFilters( model.query.filter.name )"
-           class="md-raised md-icon-button">
-    <md-icon md-svg-src="/static/icon/search.svg"></md-icon>
-</md-button>
-
 <md-button aria-label="Novo funcionário"
            class="md-fab save-button"
            ui-sref="funcionario.new">
-    <md-icon md-svg-src="/static/icon/add.svg"></md-icon>
+    <md-icon class="zmdi zmdi-plus zmdi-hc-fw zmdi-hc-2x"></md-icon>
 </md-button>
 
 <md-table-container class="table">
