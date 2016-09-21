@@ -1,20 +1,18 @@
 package com.digows.blank.domain.service.aluno;
 
-import java.util.Calendar;
+import java.util.Arrays;
+import java.util.List;
 
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import com.digows.blank.domain.entity.account.User;
-import com.digows.blank.domain.entity.account.UserRole;
 import com.digows.blank.domain.entity.aluno.Aluno;
+import com.digows.blank.domain.entity.aluno.TipoResponsavel;
 import com.digows.blank.domain.repository.aluno.IAlunoRepository;
 
 /**
@@ -99,6 +97,11 @@ public class AlunoService
 	public void removeAluno(  Long alunoId)
 	{
 		this.alunoRepository.delete( alunoId );
+	}
+	
+	
+	public List<TipoResponsavel> listTipoFamiliar(){
+		return Arrays.asList(TipoResponsavel.values());
 	}
 	
 }
