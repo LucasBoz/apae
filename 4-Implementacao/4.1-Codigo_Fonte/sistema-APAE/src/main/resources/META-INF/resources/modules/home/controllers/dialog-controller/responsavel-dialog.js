@@ -47,6 +47,7 @@ var ResponsavelDialogController = ["$scope", "$mdDialog", "$importService", "$ro
 
             var idx = $scope.responsavel.telefones.indexOf(telefone);
             $scope.responsavel.telefones.splice(idx, 1);
+
         };
 
         $scope.hide = function () {
@@ -58,7 +59,5 @@ var ResponsavelDialogController = ["$scope", "$mdDialog", "$importService", "$ro
         $scope.answer = function (responsavel) {
             $scope.save(responsavel);
         };
-
-
 
 }];

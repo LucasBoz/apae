@@ -56,8 +56,6 @@
              *-------------------------------------------------------------------*/
 
 
-
-
             alunoService.listTipoFamiliar({
                 callback: function (result) {
 
@@ -94,6 +92,14 @@
                         $rootScope.toast(message);
                     }
                 })
+            };
+
+
+            $scope.removeFamiliar = function (familiar) {
+
+                var idx = $scope.aluno.familiares.indexOf(familiar);
+                $scope.aluno.familiares.splice(idx, 1);
+
             };
 
             $scope.removeAluno = function (ev, aluno) {
@@ -178,7 +184,7 @@
              * RESPONSAVEL
              *
              */
-            $scope.responsavelListDialog = function (ev, irmao) {
+            $scope.responsavelListDialog = function (ev) {
 
                 $mdDialog.show({
                     controller: responsavelListDialogController,
@@ -186,7 +192,7 @@
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true,
-                    locals: {irmao: angular.copy(irmao)}
+                    locals: {}
 
                 })
                     .then(function (result) {
@@ -196,6 +202,7 @@
                                 responsavel : result
                             } );
                         }
+
                     });
 
             };
@@ -228,7 +235,7 @@
             }
 
 
-            $scope.responsavelDialog = function (ev, responsavel) {
+            $scope.responsavelDialog = function (ev, familiar) {
 
                 $mdDialog.show({
                     controller: ResponsavelDialogController,
@@ -236,11 +243,26 @@
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true,
-                    locals: {responsavel: angular.copy(responsavel)}
+                    locals: {responsavel: familiar ? angular.copy(familiar.responsavel) : null}
 
                 })
                     .then(function (result) {
 
+                        if(result){
+
+                            var idx = $scope.aluno.familiares.indexOf(familiar);
+
+                            if( idx > -1 ){
+
+                                //editou
+                                $scope.aluno.familiares[idx].responsavel = result;
+
+                            } else {
+                                //Novo dado
+                                $scope.aluno.familiares.push(  { responsavel : result }  );
+
+                            }
+                        }
 
                     });
 

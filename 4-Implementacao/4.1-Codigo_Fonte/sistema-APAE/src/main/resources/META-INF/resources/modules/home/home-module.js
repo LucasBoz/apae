@@ -245,7 +245,7 @@
             var customBackground = {
                 '50': '#ffffff', // Button color
                 '100': '#ff6400',
-                '200': '#003d31',
+                '200': '#388E3C', // Backgroud Select
                 '300': '#388E3C', // Header and Selection DatePicker
                 '400': '#666666',
                 '500': 'f1f1f1',  // background Color
