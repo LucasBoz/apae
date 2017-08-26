@@ -25,6 +25,12 @@
                 formacoes : []
             };
 
+            $scope.state = {
+                DETAIL : "funcionario.detail",
+                NEW : "funcionario.new",
+                LIST : "funcionario.list"
+            };
+
 
             /**
              *

@@ -1,32 +1,52 @@
-<!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org"
-      xmlns:th="http://www.thymeleaf.org" lang="pt">
+
+<md-dialog aria-label=formacao" ng-cloak style="min-width: 450px ">
+    <form name="model.irmaoForm" id="responsavel">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Responsáveis</h2>
+
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div>
 
 
-<md-table-container style="border: 1px #DDDDDD solid">
-    <table md-table style="width: 100%">
-        <thead md-head>
+                <md-table-container>
+
+                    <table md-table style="width: 100%">
+                        <thead md-head>
 
 
-        <tr md-row class="header-list">
-            <th md-column style="width: 30%"><span>Nome</span></th>
-        </tr>
-        </thead>
+                        <tr md-row class="header-list">
+                            <th md-column style="width: 30%"><span>Nome</span></th>
+                        </tr>
+                        </thead>
 
-        <div ng-if="!responsaveis.length">
-            <h3> Nenhum responsável cadastrado </h3>
-        </div>
+                        <div ng-if="!responsaveis.length">
+                            <h3> Nenhum responsável cadastrado </h3>
+                        </div>
 
-        <tbody md-body>
-        <tr md-row md-auto-select ng-click="selectResponsavel(responsavel)"
-            ng-repeat="responsavel in responsaveis">
-            <td md-cell>{{responsavel.nome}}</td>
-        </tr>
-        </tbody>
-    </table>
-</md-table-container>
+                        <tbody md-body>
+                        <tr md-row md-auto-select ng-click="selectResponsavel(responsavel)"
+                            ng-repeat="responsavel in responsaveis">
+                            <td md-cell>{{responsavel.nome}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
 
-<md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"
-                     md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+                <md-table-pagination md-limit="model.pageRequest.size" md-limit-options="[5, 10, 15]" md-page="model.pageRequest.page"
+                                     md-on-paginate="getDesserts" md-page-select></md-table-pagination>
 
-</html>
+
+            </div>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>

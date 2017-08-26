@@ -15,7 +15,15 @@
             /*-------------------------------------------------------------------
              *                          ATTRIBUTES
              *-------------------------------------------------------------------*/
-
+            /**
+             * STATES
+             * @type {{DETAIL: string, NEW: string, LIST: string}}
+             */
+            $scope.state = {
+                DETAIL : "aluno.detail",
+                NEW : "aluno.new",
+                LIST : "aluno.list"
+            };
 
             $scope.alunos = [];
 
@@ -56,15 +64,19 @@
              *-------------------------------------------------------------------*/
 
 
-            alunoService.listTipoFamiliar({
-                callback: function (result) {
+            $scope.listTipoFamiliar = function () {
 
-                    $scope.model.tipoResponsavel = result;
+                alunoService.listTipoFamiliar({
+                    callback: function (result) {
 
-                }, errorHandler: function (message, exception) {
-                    $rootScope.toast(message);
-                }
-            });
+                        $scope.model.tipoResponsavel = result;
+
+                    }, errorHandler: function (message, exception) {
+                        $rootScope.toast(message);
+                    }
+                });
+
+            };
 
 
             $scope.listAlunos = function () {
@@ -83,11 +95,10 @@
                 })
             };
 
-            $scope.changeToDetail = function (aluno) {
-                alunoService.findAlunoById(aluno.id, {
+            $scope.findAlunoById = function ( id ) {
+                alunoService.findAlunoById( id, {
                     callback: function (result) {
                         $scope.aluno = result;
-                        $state.go("aluno.new");
                     }, errorHandler: function (message, exception) {
                         $rootScope.toast(message);
                     }
@@ -207,6 +218,17 @@
 
             };
 
+            $scope.showFamiliares = function (ev) {
+
+                $mdDialog.show({
+                    controller: familiarDialogController,
+                    templateUrl: 'modules/home/views/aluno/responsavel-dialog/responsavel-list-dialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                })
+            };
+
 
             function responsavelListDialogController($scope, $mdDialog) {
 
@@ -233,6 +255,8 @@
                 };
 
             }
+
+
 
 
             $scope.responsavelDialog = function (ev, familiar) {
@@ -298,7 +322,45 @@
 
             };
 
-            $scope.listAlunos();
+
+            /**
+             *
+             * STATES
+             */
+            $scope.changeToEdit = function ( id ) {
+
+                $scope.findAlunoById( id  );
+
+                $scope.listTipoFamiliar();
+
+            };
+
+            $scope.changeToList = function () {
+
+                $scope.listAlunos();
+
+            };
+
+            $scope.changeToNew = function () {
+                console.log("NOVOPOOO");
+            };
+
+            $scope.$on('$stateChangeSuccess', function() {
+
+                switch( $state.current.name ){
+                    case $scope.state.LIST :
+                        $scope.changeToList();
+                        break;
+                    case $scope.state.DETAIL :
+                        $scope.changeToEdit( $state.params.id );
+                        break;
+                    case $scope.state.NEW :
+                        $scope.changeToNew ();
+                        break;
+                }
+
+            });
+
 
 
         });

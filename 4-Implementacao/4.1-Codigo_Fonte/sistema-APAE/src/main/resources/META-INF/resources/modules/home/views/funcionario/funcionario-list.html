@@ -44,7 +44,7 @@
         </tr>
         </thead>
         <tbody md-body>
-        <tr md-row md-auto-select ng-click="changeToDetail(funcionario)"
+        <tr md-row md-auto-select ng-click="$state.go(state.DETAIL, {id: funcionario.id})"
             ng-repeat="funcionario in model.pageRequest.content">
             <td md-cell>{{funcionario.nome}}</td>
             <td md-cell>{{funcionario.email}}</td>

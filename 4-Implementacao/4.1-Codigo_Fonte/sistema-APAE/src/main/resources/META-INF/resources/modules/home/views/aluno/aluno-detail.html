@@ -1,8 +1,383 @@
-<!DOCTYPE html>
-<html lang="pt">
+<md-toolbar class="md-table-toolbar md-primary" ng-init="expression">
 
-{{aluno.id}}{{aluno.name}}
+    <div layout="row">
 
-<md-button ui-sref="aluno.edit({id: aluno.id})"  class="md-raised">EDITAR</md-button>
+        <div class="md-toolbar-tools">
 
+            <md-button aria-label="Voltar"
+                       class="md-icon-button launch"
+                       ui-sref="aluno.list">
+                <md-icon md-svg-src="/static/icon/arrow-left2.svg"></md-icon>
+            </md-button>
+
+            <span ng-if="!aluno.id">Novo aluno</span>
+            <span ng-if="aluno.id">Editar aluno</span>
+        </div>
+    </div>
+
+</md-toolbar>
+
+
+<md-content layout="column" layout-align="start center" class="content flex layout-fill">
+
+    <div layout-align="center center" class="eits-content">
+
+        <md-button aria-label="Salvar aluno"
+                   class="md-fab save-button"
+                   ng-click="save(aluno)">
+            <md-icon md-svg-src="/static/icon/save.svg"></md-icon>
+        </md-button>
+
+        <form name="modelForm" novalidate>
+
+
+            <div class="eits-paper-sheet-item">
+                <div class="paper-sheet-closed">
+                    <content-open class="ng-scope">
+                        <div layout="column">
+
+                            <div layout="row">
+
+
+                                <md-input-container flex>
+                                    <label>Nome</label>
+                                    <input type="text" ng-model="aluno.nome" md-maxlength="200" name="nome" required>
+                                    <div ng-messages="modelForm.nomeCompleto.$error">
+                                        <div ng-message="required">Campo obrigatório</div>
+                                    </div>
+                                </md-input-container>
+
+                                <div flex>
+                                    <label>Data de nascimento</label>
+                                    <md-datepicker ng-model="aluno.dataNascimento"
+                                                   placeholder="Data de nascimento"></md-datepicker>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </content-open>
+                </div>
+            </div>
+
+
+            <eits-paper-sheet1 id="responsaveis">
+
+                <content-closed1>
+                    <h4>Responsáveis</h4>
+                    <md-divider></md-divider>
+                </content-closed1>
+
+                <content-opened1>
+                    <md-button class="md-accent md-raised md-hue-1" ng-click="responsavelDialog($event)"
+                               style="position: absolute ;right: 230px; top: 10px;">
+                        Novo responsável
+                    </md-button>
+
+                    <md-button class="md-accent md-raised md-hue-1" ng-click="responsavelListDialog($event)"
+                               style="position: absolute ;right: 40px; top: 10px;">
+                        Associar responsável
+                    </md-button>
+
+                    <md-table-container>
+                        <table md-table>
+                            <thead md-head>
+                            <tr md-row class="header-list">
+                                <th md-column><span>Nome</span></th>
+                                <th md-column><span>Tipo de familiar</span></th>
+                            </tr>
+                            </thead>
+
+
+                            <tbody md-body>
+                            <tr md-row md-auto-select
+                                ng-repeat="familiar in aluno.familiares"
+                                ng-click="responsavelDialog($event, familiar)">
+                                <td md-cell>{{familiar.responsavel.nome}}</td>
+                                <td md-cell>
+
+                                    <md-input-container>
+                                        <label>Tipo</label>
+                                        <md-select required ng-model="familiar.tipoResponsavel">
+                                            <md-option ng-repeat="tipoResponsavel in model.tipoResponsavel"
+                                                       value="{{tipoResponsavel}}">{{::tipoResponsavel | translate}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                </td>
+                                <td md-cell>
+                                    <md-button ng-click="removeFamiliar(familiar); $event.stopPropagation()"
+                                               aria-label="remove" class="md-raised table-button">
+                                        <md-icon md-font-set="zmdi zmdi-close zmdi-delete zmdi-hc-lg"></md-icon>
+                                    </md-button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+
+                    <div ng-if="!aluno.familiares.length">
+                        <h3> Nenhum familiar associado </h3>
+                    </div>
+
+                </content-opened1>
+            </eits-paper-sheet1>
+
+            <eits-paper-sheet1 id="irmaos">
+
+                <content-closed1>
+                    <h4>Irmãos</h4>
+                    <md-divider></md-divider>
+                </content-closed1>
+
+                <content-opened1>
+                    <md-button class="md-accent md-raised md-hue-1" ng-click="irmaoDialog($event)"
+                               style="position: absolute ;right: 40px; top: 10px;">
+                        Adicionar irmão
+                    </md-button>
+                    <div layout="column">
+                        <div layout="column">
+                            <div ng-repeat="irmao in aluno.irmaos">
+
+                                <div ng-click="irmaoDialog($event, irmao)" layout="column">
+
+                                    <span ng-if="irmao.nome"> Nome: <b> {{irmao.nome}} </b></span>
+                                    <span ng-if="irmao.dataNascimento"> Data de nascimento:  <b>{{irmao.dataNascimento | date}} </b></span>
+
+                                    <md-divider></md-divider>
+
+                                </div>
+
+                            </div>
+                            <div ng-if="!aluno.irmaos.length">
+                                <h3> Nenhum irmão cadastrado </h3>
+                            </div>
+                        </div>
+                    </div>
+                </content-opened1>
+            </eits-paper-sheet1>
+
+            <eits-paper-sheet1 id="dadosIdentificacao">
+
+                <content-closed1>
+                    <h4>Dados de identificação</h4>
+                    <md-divider></md-divider>
+                </content-closed1>
+
+                <content-opened1>
+                    <div layout="column">
+
+                        <div layout="row">
+                            <div flex="50" layout-padding="">
+                                <md-input-container class="md-block">
+                                    <label>RG</label>
+                                    <input type="text" ng-model="aluno.rg" md-maxlength="20" name="rg"
+                                           id="rg">
+                                </md-input-container>
+                            </div>
+                            <div flex="50" layout-padding="">
+                                <md-input-container class="md-block">
+                                    <label>CPF</label>
+                                    <input type="text" ng-model="aluno.cpf" md-maxlength="11" name="cpf"
+                                           id="cpf">
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <div layout="row">
+                            <div flex="50" layout-padding="">
+                                <md-input-container class="md-block">
+                                    <label>Certidão de nascimento</label>
+                                    <input type="text" ng-model="aluno.certidao.numero" md-maxlength="20"
+                                           name="certidaoNacimento"
+                                           id="certidao">
+                                </md-input-container>
+                            </div>
+                            <div flex="25" layout-padding="">
+                                <md-input-container class="md-block">
+                                    <label>Livro</label>
+                                    <input type="text" ng-model="aluno.certidao.livro" md-maxlength="20" name="livro"
+                                           id="livro">
+                                </md-input-container>
+                            </div>
+
+                            <div flex="25" layout-padding="">
+                                <md-input-container class="md-block">
+                                    <label>Folha</label>
+                                    <input type="text" ng-model="aluno.certidao.folha" md-maxlength="20" name="folha"
+                                           id="folha">
+                                </md-input-container>
+                            </div>
+
+                        </div>
+
+
+                        <div layout="row">
+                            <div flex layout-padding="">
+                                <md-input-container class="md-block">
+                                    <label>Numero SERE/CGM</label>
+                                    <input type="text" ng-model="aluno.sereCgm" md-maxlength="20" name="sereCgm"
+                                           id="sereCgm">
+                                </md-input-container>
+                            </div>
+                            <div flex layout-padding="">
+                                <md-input-container class="md-block">
+                                    <label>Número do cartão do SUS</label>
+                                    <input type="text" ng-model="aluno.sus" md-maxlength="20" name="sus"
+                                           id="sus">
+                                </md-input-container>
+                            </div>
+                            <div flex layout-padding="">
+                                <md-input-container class="md-block">
+                                    <label>Número da matrícula</label>
+                                    <input type="text" ng-model="aluno.matricula" md-maxlength="20" name="matricula"
+                                           id="matricula">
+
+                                </md-input-container>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </content-opened1>
+            </eits-paper-sheet1>
+
+
+            <eits-paper-sheet1 id="endereco" on-open="onOpenEventHandler()">
+                <content-closed1>
+                    <h4>Endereço</h4>
+                    <md-divider></md-divider>
+                </content-closed1>
+
+                <content-opened1>
+
+                    <div layout="row">
+                        <md-input-container flex="20">
+                            <label>CEP</label>
+                            <input ng-model="aluno.endereco.cep" type="text" name="nome" md-maxlength="100">
+                        </md-input-container>
+
+                        <md-input-container flex="60">
+                            <label>Logradouro</label>
+                            <input ng-model="aluno.endereco.logradouro" type="text" name="logradouro"
+                                   md-maxlength="100">
+                        </md-input-container>
+
+                        <md-input-container flex="20">
+                            <label>Número</label>
+                            <input ng-model="aluno.endereco.numero" type="text" name="numero" md-maxlength="50">
+                        </md-input-container>
+
+                    </div>
+
+
+                    <div layout="row">
+                        <md-input-container flex="50">
+                            <label>Complemento</label>
+                            <input ng-model="aluno.endereco.municipio" type="text" name="municipio" md-maxlength="100">
+                        </md-input-container>
+
+                        <md-input-container flex="45">
+                            <label>Cidade</label>
+                            <input ng-model="aluno.endereco.cidade" type="text" name="cidade" md-maxlength="100">
+                        </md-input-container>
+
+                        <md-input-container flex="5">
+                            <label>UF</label>
+                            <input ng-model="aluno.endereco.uf" type="text" name="uf" md-maxlength="2" max-length="2">
+                        </md-input-container>
+
+                    </div>
+
+
+                </content-opened1>
+
+            </eits-paper-sheet1>
+
+            <eits-paper-sheet1 id="beneficio" on-open="onOpenEventHandler()">
+                <content-closed1>
+                    <h4>Mais informações</h4>
+                    <md-divider></md-divider>
+                </content-closed1>
+
+                <content-opened1>
+
+                    <div layout="row">
+                        <div flex="50" layout-padding="">
+
+                            <md-checkbox ng-model="aluno.bpc" aria-label="bpc">
+                                Tem BPC
+                            </md-checkbox>
+
+                        </div>
+                        <div flex="50" layout-padding="">
+
+                            <md-checkbox ng-model="aluno.bolsaFamilia" aria-label="bolsa família">
+                                Tem bolsa família
+                            </md-checkbox>
+                        </div>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <div flex="30" layout-padding="">
+
+                            <md-checkbox ng-model="outroBeneficio" aria-label="outro benefício">
+                                Outro benefício
+                            </md-checkbox>
+                        </div>
+
+                        <md-input-container flex="70" class="md-block">
+                            <label>Qual benefício?</label>
+                            <input type="text"
+                                   ng-disabled="!outroBeneficio"
+                                   ng-model="aluno.beneficio"
+                                   md-maxlength="144" name="beneficio"
+                                   id="beneficio">
+                        </md-input-container>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <div flex="30" layout-padding="">
+
+                            <md-checkbox ng-model="alergico" aria-label="alergico">
+                                É alérgico?
+                            </md-checkbox>
+                        </div>
+
+                        <md-input-container flex="70" class="md-block">
+                            <label>Especifique</label>
+                            <input type="text"
+                                   ng-disabled="!alergico"
+                                   ng-model="aluno.alergia"
+                                   md-maxlength="144" name="alergico"
+                                   id="alergico">
+                        </md-input-container>
+
+                    </div>
+
+                    <div layout="row">
+
+                        <div flex="70" layout-padding="">
+
+                            <md-checkbox ng-model="aluno.autorizacaoIrSozinho" aria-label="Autorização">
+                                Possui autorização para ir e voltar sozinho da escola?
+                            </md-checkbox>
+                        </div>
+
+
+                    </div>
+
+                </content-opened1>
+
+            </eits-paper-sheet1>
+
+        </form>
+    </div>
+</md-content>
 </html>
